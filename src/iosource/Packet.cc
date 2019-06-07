@@ -119,7 +119,8 @@ int Packet::GetLinkHeaderSize(int link_type)
 
 void Packet::ProcessLayer2()
 	{
-	l2_valid = true;
+    DBG_LOG(DBG_LLPOC, "[LAYER 2] Next packet with ts=%f has link type %d", time, link_type);
+    l2_valid = true;
 
 	// Unfortunately some packets on the link might have MPLS labels
 	// while others don't. That means we need to ask the link-layer if

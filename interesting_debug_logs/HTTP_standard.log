@@ -1,0 +1,388 @@
+         0.000000/1559833828.487448 [dpd] Registering analyzer IRC for port 6669/1
+         0.000000/1559833828.488198 [dpd] Registering analyzer IRC for port 6668/1
+         0.000000/1559833828.488219 [dpd] Registering analyzer IRC for port 6666/1
+         0.000000/1559833828.488244 [dpd] Registering analyzer IRC for port 6667/1
+         0.000000/1559833828.488371 [dpd] Registering analyzer SMTP for port 25/1
+         0.000000/1559833828.488403 [dpd] Registering analyzer SMTP for port 587/1
+         0.000000/1559833828.488464 [dpd] Registering analyzer RADIUS for port 1812/2
+         0.000000/1559833828.488527 [dpd] Registering analyzer SNMP for port 161/2
+         0.000000/1559833828.488543 [dpd] Registering analyzer SNMP for port 162/2
+         0.000000/1559833828.488704 [dpd] Registering analyzer HTTP for port 631/1
+         0.000000/1559833828.488735 [dpd] Registering analyzer HTTP for port 1080/1
+         0.000000/1559833828.488746 [dpd] Registering analyzer HTTP for port 8080/1
+         0.000000/1559833828.488756 [dpd] Registering analyzer HTTP for port 81/1
+         0.000000/1559833828.488766 [dpd] Registering analyzer HTTP for port 8888/1
+         0.000000/1559833828.488793 [dpd] Registering analyzer HTTP for port 80/1
+         0.000000/1559833828.488830 [dpd] Registering analyzer HTTP for port 8000/1
+         0.000000/1559833828.488840 [dpd] Registering analyzer HTTP for port 3128/1
+         0.000000/1559833828.488853 [dpd] Registering analyzer SSH for port 22/1
+         0.000000/1559833828.488961 [dpd] Registering analyzer XMPP for port 5222/1
+         0.000000/1559833828.488977 [dpd] Registering analyzer XMPP for port 5269/1
+         0.000000/1559833828.489068 [dpd] Registering analyzer DCE_RPC for port 135/1
+         0.000000/1559833828.489158 [dpd] Registering analyzer DNS for port 53/2
+         0.000000/1559833828.489200 [dpd] Registering analyzer DNS for port 137/2
+         0.000000/1559833828.489234 [dpd] Registering analyzer DNS for port 53/1
+         0.000000/1559833828.489248 [dpd] Registering analyzer DNS for port 5355/2
+         0.000000/1559833828.489260 [dpd] Registering analyzer DNS for port 5353/2
+         0.000000/1559833828.489478 [dpd] Registering analyzer SSL for port 995/1
+         0.000000/1559833828.489501 [dpd] Registering analyzer SSL for port 636/1
+         0.000000/1559833828.489520 [dpd] Registering analyzer SSL for port 990/1
+         0.000000/1559833828.489535 [dpd] Registering analyzer SSL for port 989/1
+         0.000000/1559833828.489547 [dpd] Registering analyzer SSL for port 443/1
+         0.000000/1559833828.489565 [dpd] Registering analyzer SSL for port 614/1
+         0.000000/1559833828.489601 [dpd] Registering analyzer SSL for port 992/1
+         0.000000/1559833828.489618 [dpd] Registering analyzer SSL for port 993/1
+         0.000000/1559833828.489661 [dpd] Registering analyzer SSL for port 563/1
+         0.000000/1559833828.489677 [dpd] Registering analyzer SSL for port 585/1
+         0.000000/1559833828.489697 [dpd] Registering analyzer SSL for port 5223/1
+         0.000000/1559833828.489729 [dpd] Registering analyzer DTLS for port 443/2
+         0.000000/1559833828.489925 [dpd] Disabling analyzer SteppingStone
+         0.000000/1559833828.489947 [dpd] Disabling analyzer InterConn
+         0.000000/1559833828.489962 [dpd] Disabling analyzer TCPStats
+         0.000000/1559833828.489978 [dpd] Disabling analyzer BackDoor
+         0.000000/1559833828.490548 [dpd] Registering analyzer FTP for port 21/1
+         0.000000/1559833828.490591 [dpd] Registering analyzer FTP for port 2811/1
+         0.000000/1559833828.490697 [dpd] Registering analyzer SYSLOG for port 514/2
+         0.000000/1559833828.490764 [dpd] Registering analyzer SOCKS for port 1080/1
+         0.000000/1559833828.490785 [dpd] Registering analyzer KRB for port 88/2
+         0.000000/1559833828.490800 [dpd] Registering analyzer KRB_TCP for port 88/1
+         0.000000/1559833828.490948 [dpd] Registering analyzer SMB for port 139/1
+         0.000000/1559833828.490967 [dpd] Registering analyzer SMB for port 445/1
+         0.000000/1559833828.491048 [dpd] Registering analyzer SIP for port 5060/2
+         0.000000/1559833828.491116 [dpd] Registering analyzer RDP for port 3389/1
+         0.000000/1559833828.491212 [dpd] Registering analyzer MODBUS for port 502/1
+         0.000000/1559833828.491252 [dpd] Registering analyzer IMAP for port 143/1
+         0.000000/1559833828.491420 [dpd] Registering analyzer MYSQL for port 3306/1
+         0.000000/1559833828.491438 [dpd] Registering analyzer MYSQL for port 1434/1
+         0.000000/1559833828.491640 [dpd] Registering analyzer AYIYA for port 5072/2
+         0.000000/1559833828.491664 [dpd] Registering analyzer TEREDO for port 3544/2
+         0.000000/1559833828.491683 [dpd] Registering analyzer GTPV1 for port 2152/2
+         0.000000/1559833828.491700 [dpd] Registering analyzer GTPV1 for port 2123/2
+         0.000000/1559833828.491714 [dpd] Registering analyzer VXLAN for port 4789/2
+         0.000000/1559833828.491963 [dpd] Registering analyzer DHCP for port 68/2
+         0.000000/1559833828.491981 [dpd] Registering analyzer DHCP for port 4011/2
+         0.000000/1559833828.491994 [dpd] Registering analyzer DHCP for port 67/2
+         0.000000/1559833828.492044 [dpd] Registering analyzer DNP3_TCP for port 20000/2
+         0.000000/1559833828.492064 [dpd] Registering analyzer DNP3_TCP for port 20000/1
+         0.000000/1559833828.492374 [dpd] Available analyzers after zeek_init():
+         0.000000/1559833828.492411 [dpd]     AYIYA (enabled)
+         0.000000/1559833828.492417 [dpd]     BackDoor (disabled)
+         0.000000/1559833828.492420 [dpd]     BitTorrent (enabled)
+         0.000000/1559833828.492425 [dpd]     BitTorrentTracker (enabled)
+         0.000000/1559833828.492430 [dpd]     ConnSize (enabled)
+         0.000000/1559833828.492433 [dpd]     DCE_RPC (enabled)
+         0.000000/1559833828.492437 [dpd]     DHCP (enabled)
+         0.000000/1559833828.492441 [dpd]     DNP3_TCP (enabled)
+         0.000000/1559833828.492444 [dpd]     DNP3_UDP (enabled)
+         0.000000/1559833828.492448 [dpd]     Contents_DNS (enabled)
+         0.000000/1559833828.492451 [dpd]     DNS (enabled)
+         0.000000/1559833828.492455 [dpd]     FTP_Data (enabled)
+         0.000000/1559833828.492460 [dpd]     IRC_Data (enabled)
+         0.000000/1559833828.492465 [dpd]     Finger (enabled)
+         0.000000/1559833828.492469 [dpd]     FTP (enabled)
+         0.000000/1559833828.492475 [dpd]     FTP_ADAT (enabled)
+         0.000000/1559833828.492480 [dpd]     Gnutella (enabled)
+         0.000000/1559833828.492484 [dpd]     GSSAPI (enabled)
+         0.000000/1559833828.492488 [dpd]     GTPv1 (enabled)
+         0.000000/1559833828.492493 [dpd]     HTTP (enabled)
+         0.000000/1559833828.492499 [dpd]     ICMP (enabled)
+         0.000000/1559833828.492502 [dpd]     Ident (enabled)
+         0.000000/1559833828.492507 [dpd]     IMAP (enabled)
+         0.000000/1559833828.492512 [dpd]     InterConn (disabled)
+         0.000000/1559833828.492516 [dpd]     IRC (enabled)
+         0.000000/1559833828.492522 [dpd]     KRB (enabled)
+         0.000000/1559833828.492525 [dpd]     KRB_TCP (enabled)
+         0.000000/1559833828.492530 [dpd]     Contents_Rlogin (enabled)
+         0.000000/1559833828.492535 [dpd]     Contents_Rsh (enabled)
+         0.000000/1559833828.492540 [dpd]     Login (enabled)
+         0.000000/1559833828.492544 [dpd]     NVT (enabled)
+         0.000000/1559833828.492548 [dpd]     Rlogin (enabled)
+         0.000000/1559833828.492553 [dpd]     Rsh (enabled)
+         0.000000/1559833828.492558 [dpd]     Telnet (enabled)
+         0.000000/1559833828.492563 [dpd]     MODBUS (enabled)
+         0.000000/1559833828.492566 [dpd]     MySQL (enabled)
+         0.000000/1559833828.492571 [dpd]     Contents_NCP (enabled)
+         0.000000/1559833828.492576 [dpd]     NCP (enabled)
+         0.000000/1559833828.492581 [dpd]     Contents_NetbiosSSN (enabled)
+         0.000000/1559833828.492586 [dpd]     NetbiosSSN (enabled)
+         0.000000/1559833828.492589 [dpd]     NTLM (enabled)
+         0.000000/1559833828.492594 [dpd]     NTP (enabled)
+         0.000000/1559833828.492602 [dpd]     PIA_TCP (enabled)
+         0.000000/1559833828.492608 [dpd]     PIA_UDP (enabled)
+         0.000000/1559833828.492612 [dpd]     POP3 (enabled)
+         0.000000/1559833828.492617 [dpd]     RADIUS (enabled)
+         0.000000/1559833828.492621 [dpd]     RDP (enabled)
+         0.000000/1559833828.492626 [dpd]     RFB (enabled)
+         0.000000/1559833828.492631 [dpd]     Contents_NFS (enabled)
+         0.000000/1559833828.492637 [dpd]     Contents_RPC (enabled)
+         0.000000/1559833828.492641 [dpd]     MOUNT (enabled)
+         0.000000/1559833828.492645 [dpd]     NFS (enabled)
+         0.000000/1559833828.492650 [dpd]     Portmapper (enabled)
+         0.000000/1559833828.492653 [dpd]     SIP (enabled)
+         0.000000/1559833828.492657 [dpd]     Contents_SMB (enabled)
+         0.000000/1559833828.492661 [dpd]     SMB (enabled)
+         0.000000/1559833828.492666 [dpd]     SMTP (enabled)
+         0.000000/1559833828.492670 [dpd]     SNMP (enabled)
+         0.000000/1559833828.492675 [dpd]     SOCKS (enabled)
+         0.000000/1559833828.492679 [dpd]     SSH (enabled)
+         0.000000/1559833828.492696 [dpd]     DTLS (enabled)
+         0.000000/1559833828.492700 [dpd]     SSL (enabled)
+         0.000000/1559833828.492704 [dpd]     SteppingStone (disabled)
+         0.000000/1559833828.492709 [dpd]     Syslog (enabled)
+         0.000000/1559833828.492713 [dpd]     CONTENTLINE (enabled)
+         0.000000/1559833828.492717 [dpd]     Contents (enabled)
+         0.000000/1559833828.492722 [dpd]     TCP (enabled)
+         0.000000/1559833828.492726 [dpd]     TCPStats (disabled)
+         0.000000/1559833828.492730 [dpd]     Teredo (enabled)
+         0.000000/1559833828.492736 [dpd]     UDP (enabled)
+         0.000000/1559833828.492739 [dpd]     VXLAN (enabled)
+         0.000000/1559833828.492743 [dpd]     XMPP (enabled)
+         0.000000/1559833828.492748 [dpd]     ZIP (enabled)
+         0.000000/1559833828.492752 [dpd]  
+         0.000000/1559833828.492756 [dpd] Analyzers by port:
+         0.000000/1559833828.492762 [dpd]     21/tcp: FTP 
+         0.000000/1559833828.492767 [dpd]     22/tcp: SSH 
+         0.000000/1559833828.492771 [dpd]     25/tcp: SMTP 
+         0.000000/1559833828.492776 [dpd]     53/tcp: DNS 
+         0.000000/1559833828.492781 [dpd]     80/tcp: HTTP 
+         0.000000/1559833828.492786 [dpd]     81/tcp: HTTP 
+         0.000000/1559833828.492790 [dpd]     88/tcp: KRB_TCP 
+         0.000000/1559833828.492796 [dpd]     135/tcp: DCE_RPC 
+         0.000000/1559833828.492800 [dpd]     139/tcp: SMB 
+         0.000000/1559833828.492804 [dpd]     143/tcp: IMAP 
+         0.000000/1559833828.492809 [dpd]     443/tcp: SSL 
+         0.000000/1559833828.492814 [dpd]     445/tcp: SMB 
+         0.000000/1559833828.492819 [dpd]     502/tcp: MODBUS 
+         0.000000/1559833828.492823 [dpd]     563/tcp: SSL 
+         0.000000/1559833828.492828 [dpd]     585/tcp: SSL 
+         0.000000/1559833828.492831 [dpd]     587/tcp: SMTP 
+         0.000000/1559833828.492836 [dpd]     614/tcp: SSL 
+         0.000000/1559833828.492840 [dpd]     631/tcp: HTTP 
+         0.000000/1559833828.492844 [dpd]     636/tcp: SSL 
+         0.000000/1559833828.492848 [dpd]     989/tcp: SSL 
+         0.000000/1559833828.492854 [dpd]     990/tcp: SSL 
+         0.000000/1559833828.492858 [dpd]     992/tcp: SSL 
+         0.000000/1559833828.492862 [dpd]     993/tcp: SSL 
+         0.000000/1559833828.492868 [dpd]     995/tcp: SSL 
+         0.000000/1559833828.492872 [dpd]     1080/tcp: HTTP SOCKS 
+         0.000000/1559833828.492877 [dpd]     1434/tcp: MYSQL 
+         0.000000/1559833828.492881 [dpd]     2811/tcp: FTP 
+         0.000000/1559833828.492886 [dpd]     3128/tcp: HTTP 
+         0.000000/1559833828.492889 [dpd]     3306/tcp: MYSQL 
+         0.000000/1559833828.492893 [dpd]     3389/tcp: RDP 
+         0.000000/1559833828.492896 [dpd]     5222/tcp: XMPP 
+         0.000000/1559833828.492900 [dpd]     5223/tcp: SSL 
+         0.000000/1559833828.492903 [dpd]     5269/tcp: XMPP 
+         0.000000/1559833828.492913 [dpd]     6666/tcp: IRC 
+         0.000000/1559833828.492917 [dpd]     6667/tcp: IRC 
+         0.000000/1559833828.492921 [dpd]     6668/tcp: IRC 
+         0.000000/1559833828.492925 [dpd]     6669/tcp: IRC 
+         0.000000/1559833828.492928 [dpd]     8000/tcp: HTTP 
+         0.000000/1559833828.492932 [dpd]     8080/tcp: HTTP 
+         0.000000/1559833828.492935 [dpd]     8888/tcp: HTTP 
+         0.000000/1559833828.492939 [dpd]     20000/tcp: DNP3_TCP 
+         0.000000/1559833828.492944 [dpd]     53/udp: DNS 
+         0.000000/1559833828.492948 [dpd]     67/udp: DHCP 
+         0.000000/1559833828.492954 [dpd]     68/udp: DHCP 
+         0.000000/1559833828.492958 [dpd]     88/udp: KRB 
+         0.000000/1559833828.492963 [dpd]     137/udp: DNS 
+         0.000000/1559833828.492967 [dpd]     161/udp: SNMP 
+         0.000000/1559833828.492970 [dpd]     162/udp: SNMP 
+         0.000000/1559833828.492973 [dpd]     443/udp: DTLS 
+         0.000000/1559833828.492977 [dpd]     514/udp: SYSLOG 
+         0.000000/1559833828.492982 [dpd]     1812/udp: RADIUS 
+         0.000000/1559833828.492988 [dpd]     2123/udp: GTPV1 
+         0.000000/1559833828.492991 [dpd]     2152/udp: GTPV1 
+         0.000000/1559833828.492996 [dpd]     3544/udp: TEREDO 
+         0.000000/1559833828.493001 [dpd]     4011/udp: DHCP 
+         0.000000/1559833828.493005 [dpd]     4789/udp: VXLAN 
+         0.000000/1559833828.493009 [dpd]     5060/udp: SIP 
+         0.000000/1559833828.493014 [dpd]     5072/udp: AYIYA 
+         0.000000/1559833828.493018 [dpd]     5353/udp: DNS 
+         0.000000/1559833828.493023 [dpd]     5355/udp: DNS 
+         0.000000/1559833828.493028 [dpd]     20000/udp: DNP3_TCP 
+         0.000000/1559833828.493057 [main-loop] realtime=1559833828.493057 iosrc=Broker::Manager ts=1.000000
+         0.000000/1559833828.493073 [main-loop] realtime=1559833828.493073 iosrc=threading::Manager ts=1.000000
+         0.000000/1559833828.493081 [main-loop] realtime=1559833828.493081 iosrc=PktSrc ts=1362692526.869344
+1362692526.869344/1559833828.493150 [dpd] 141.142.228.5:59856 > 192.150.187.43:80 activated TCP analyzer
+1362692526.869344/1559833828.493169 [dpd] HTTP[3] added originator support CONTENTLINE[4]
+1362692526.869344/1559833828.493177 [dpd] HTTP[3] added responder support CONTENTLINE[5]
+1362692526.869344/1559833828.493185 [dpd] TCP[1] added child HTTP[3]
+1362692526.869344/1559833828.493192 [dpd] 141.142.228.5:59856 > 192.150.187.43:80 activated HTTP analyzer due to port 80
+1362692526.869344/1559833828.493203 [dpd] TCP added packet child CONNSIZE
+1362692526.869344/1559833828.493212 [dpd] TCP[1] added child PIA_TCP[2]
+1362692526.869344/1559833828.493267 [dpd] TCP[1] DeliverPacket(44, T, 18446744073709551615, 0x7ffc06367620, 44) [\xe9\xd0\x00P\xfe!2:\x00\x00\x00\x00\xb0\x02\xff\xff;\xc0\x00\x00\x02\x04\x05\xb4\x01\x03\x03\x04\x01\x01\x08\x0a\x16J\xdd \x00\x00\x00\x00...]
+1362692526.869344/1559833828.493287 [dpd] CONNSIZE[6] DeliverPacket(0, T, 1, 0x7ffc06367620, 0) []
+1362692526.869344/1559833828.493293 [dpd] PIA_TCP[2] FirstPacket(T)
+1362692526.869344/1559833828.493299 [rules] HdrTest 1 matches (+-)
+1362692526.869344/1559833828.493308 [rules] HdrTest 44 matches (+-)
+1362692526.869344/1559833828.493313 [rules] Matching Payload rules [1,0] on ||
+1362692526.869344/1559833828.493427 [rules] Matching Payload rules [1,0] on ||
+1362692526.869344/1559833828.493471 [main-loop] realtime=1559833828.493471 iosrc=threading::Manager ts=1362692526.869344
+1362692526.869344/1559833828.493483 [main-loop] realtime=1559833828.493483 iosrc=PktSrc ts=1362692526.939084
+1362692526.939084/1559833828.493519 [dpd] TCP[1] DeliverPacket(40, T, 18446744073709551615, 0x7ffc06367620, 40) [\x00P\xe9\xd0\xa5\xaf\xce>\xfe!2;\xa0\x128\x90.P\x00\x00\x02\x04\x05\xb4\x04\x02\x08\x0a/\x89BY\x16J\xdd \x01\x03\x03\x07]
+1362692526.939084/1559833828.493549 [dpd] CONNSIZE[6] DeliverPacket(0, F, 1, 0x7ffc06367620, 0) []
+1362692526.939084/1559833828.493555 [dpd] PIA_TCP[2] FirstPacket(F)
+1362692526.939084/1559833828.493559 [rules] HdrTest 1 matches (+-)
+1362692526.939084/1559833828.493570 [rules] HdrTest 44 matches (+-)
+1362692526.939084/1559833828.493575 [rules] Matching Payload rules [1,0] on ||
+1362692526.939084/1559833828.493581 [rules] Matching Payload rules [1,0] on ||
+1362692526.939084/1559833828.493603 [main-loop] realtime=1559833828.493603 iosrc=threading::Manager ts=1362692526.939084
+1362692526.939084/1559833828.493614 [main-loop] realtime=1559833828.493614 iosrc=threading::Manager ts=1362692526.939084
+1362692526.939084/1559833828.493620 [main-loop] realtime=1559833828.493620 iosrc=PktSrc ts=1362692526.939378
+1362692526.939378/1559833828.493654 [dpd] TCP[1] DeliverPacket(32, T, 18446744073709551615, 0x7ffc06367620, 32) [\xe9\xd0\x00P\xfe!2;\xa5\xaf\xce?\x80\x10 +u;\x00\x00\x01\x01\x08\x0a\x16J\xddf/\x89BY]
+1362692526.939378/1559833828.493662 [dpd] CONNSIZE[6] DeliverPacket(0, T, 1, 0x7ffc06367620, 0) []
+1362692526.939378/1559833828.493672 [main-loop] realtime=1559833828.493672 iosrc=threading::Manager ts=1362692526.939378
+1362692526.939378/1559833828.493693 [main-loop] realtime=1559833828.493693 iosrc=threading::Manager ts=1362692526.939378
+1362692526.939378/1559833828.493699 [main-loop] realtime=1559833828.493699 iosrc=PktSrc ts=1362692526.939527
+1362692526.939527/1559833828.493713 [dpd] TCP[1] DeliverPacket(168, T, 18446744073709551615, 0x7ffc06367620, 168) [\xe9\xd0\x00P\xfe!2;\xa5\xaf\xce?\x80\x18 +\x04\x80\x00\x00\x01\x01\x08\x0a\x16J\xddf/\x89BYGET /dow...]
+1362692526.939527/1559833828.493722 [dpd] CONTENTLINE[4] DeliverStream(136, T) [GET /download/CHANGES.bro-aux.txt HTTP/1...]
+1362692526.939527/1559833828.493729 [dpd] HTTP[3] DeliverStream(42, T) [GET /download/CHANGES.bro-aux.txt HTTP/1...]
+1362692526.939527/1559833828.493737 [rules] Matching HTTP-REQUEST rules [1,1] on |/download/CHANGES.bro-aux.txt|
+1362692526.939527/1559833828.493758 [dpd] HTTP[3] DeliverStream(36, T) [User-Agent: Wget/1.14 (darwin12.2.0)]
+1362692526.939527/1559833828.493772 [dpd] HTTP[3] DeliverStream(11, T) [Accept: */*]
+1362692526.939527/1559833828.493778 [rules] Matching HTTP-REQUEST-HEADER rules [1,0] on |User-Agent|
+1362692526.939527/1559833828.493783 [rules] Matching HTTP-REQUEST-HEADER rules [0,0] on |: |
+1362692526.939527/1559833828.493786 [rules] Matching HTTP-REQUEST-HEADER rules [0,1] on |Wget/1.14 (darwin12.2.0)|
+1362692526.939527/1559833828.493799 [dpd] HTTP[3] DeliverStream(13, T) [Host: bro.org]
+1362692526.939527/1559833828.493805 [rules] Matching HTTP-REQUEST-HEADER rules [1,0] on |Accept|
+1362692526.939527/1559833828.493810 [rules] Matching HTTP-REQUEST-HEADER rules [0,0] on |: |
+1362692526.939527/1559833828.493815 [rules] Matching HTTP-REQUEST-HEADER rules [0,1] on |*/*|
+1362692526.939527/1559833828.493824 [dpd] HTTP[3] DeliverStream(22, T) [Connection: Keep-Alive]
+1362692526.939527/1559833828.493829 [rules] Matching HTTP-REQUEST-HEADER rules [1,0] on |Host|
+1362692526.939527/1559833828.493833 [rules] Matching HTTP-REQUEST-HEADER rules [0,0] on |: |
+1362692526.939527/1559833828.493837 [rules] Matching HTTP-REQUEST-HEADER rules [0,1] on |bro.org|
+1362692526.939527/1559833828.493844 [dpd] HTTP[3] DeliverStream(0, T) []
+1362692526.939527/1559833828.493850 [rules] Matching HTTP-REQUEST-HEADER rules [1,0] on |Connection|
+1362692526.939527/1559833828.493854 [rules] Matching HTTP-REQUEST-HEADER rules [0,0] on |: |
+1362692526.939527/1559833828.493857 [rules] Matching HTTP-REQUEST-HEADER rules [0,1] on |Keep-Alive|
+1362692526.939527/1559833828.494020 [dpd] PIA_TCP[2] DeliverStream(136, T) [GET /download/CHANGES.bro-aux.txt HTTP/1...]
+1362692526.939527/1559833828.494028 [rules] Matching Payload rules [0,0] on |GET /download/CHANGES.bro-aux.txt HTTP/1...|
+1362692526.939527/1559833828.494244 [rules] New pattern match found
+1362692526.939527/1559833828.494255 [rules] Checking rule: dpd_http_client
+1362692526.939527/1559833828.494260 [rules] All patterns of rule satisfied
+1362692526.939527/1559833828.494264 [rules] Accepted rule: dpd_http_client
+1362692526.939527/1559833828.494268 [rules] Checking for accepted rule on HdrTest 1
+1362692526.939527/1559833828.494272 [rules] Checking for accepted rule on HdrTest 44
+1362692526.939527/1559833828.494285 [rules] On current node
+1362692526.939527/1559833828.494289 [rules] And has not already fired
+1362692526.939527/1559833828.494293 [rules] Evaluating conditions for rule dpd_http_client
+1362692526.939527/1559833828.494298 [rules] Conditions met: MATCH! dpd_http_client
+1362692526.939527/1559833828.494309 [dpd] CONNSIZE[6] DeliverPacket(136, T, 1, 0x7ffc06367620, 136) [GET /download/CHANGES.bro-aux.txt HTTP/1...]
+1362692526.939527/1559833828.494336 [main-loop] realtime=1559833828.494336 iosrc=PktSrc ts=1362692527.008509
+1362692527.008509/1559833828.494357 [dpd] TCP[1] DeliverPacket(32, T, 18446744073709551615, 0x7ffc06367620, 32) [\x00P\xe9\xd0\xa5\xaf\xce?\xfe!2\xc3\x80\x10\x00z\x94\x1e\x00\x00\x01\x01\x08\x0a/\x89B\x9f\x16J\xddf]
+1362692527.008509/1559833828.494366 [dpd] CONNSIZE[6] DeliverPacket(0, F, 1, 0x7ffc06367620, 0) []
+1362692527.008509/1559833828.494375 [main-loop] realtime=1559833828.494375 iosrc=PktSrc ts=1362692527.009512
+1362692527.009512/1559833828.494390 [dpd] TCP[1] DeliverPacket(1480, T, 18446744073709551615, 0x7ffc06367620, 1480) [\x00P\xe9\xd0\xa5\xaf\xce?\xfe!2\xc3\x80\x10\x00z\xed\x8b\x00\x00\x01\x01\x08\x0a/\x89B\x9f\x16J\xddfHTTP/1.1...]
+1362692527.009512/1559833828.494400 [dpd] CONTENTLINE[5] DeliverStream(1448, F) [HTTP/1.1 200 OK\x0d\x0aDate: Thu, 07 Mar 2013 ...]
+1362692527.009512/1559833828.494406 [dpd] HTTP[3] DeliverStream(15, F) [HTTP/1.1 200 OK]
+1362692527.009512/1559833828.494420 [dpd] HTTP[3] DeliverStream(35, F) [Date: Thu, 07 Mar 2013 21:43:07 GMT]
+1362692527.009512/1559833828.494427 [dpd] HTTP[3] DeliverStream(29, F) [Server: Apache/2.4.3 (Fedora)]
+1362692527.009512/1559833828.494432 [rules] Matching HTTP-REPLY-HEADER rules [1,0] on |Date|
+1362692527.009512/1559833828.494436 [rules] Matching HTTP-REPLY-HEADER rules [0,0] on |: |
+1362692527.009512/1559833828.494440 [rules] Matching HTTP-REPLY-HEADER rules [0,1] on |Thu, 07 Mar 2013 21:43:07 GMT|
+1362692527.009512/1559833828.494449 [dpd] HTTP[3] DeliverStream(44, F) [Last-Modified: Wed, 29 Aug 2012 23:49:27...]
+1362692527.009512/1559833828.494454 [rules] Matching HTTP-REPLY-HEADER rules [1,0] on |Server|
+1362692527.009512/1559833828.494458 [rules] Matching HTTP-REPLY-HEADER rules [0,0] on |: |
+1362692527.009512/1559833828.494462 [rules] Matching HTTP-REPLY-HEADER rules [0,1] on |Apache/2.4.3 (Fedora)|
+1362692527.009512/1559833828.494470 [dpd] HTTP[3] DeliverStream(26, F) [ETag: "1261-4c870358a6fc0"]
+1362692527.009512/1559833828.494476 [rules] Matching HTTP-REPLY-HEADER rules [1,0] on |Last-Modified|
+1362692527.009512/1559833828.494479 [rules] Matching HTTP-REPLY-HEADER rules [0,0] on |: |
+1362692527.009512/1559833828.494483 [rules] Matching HTTP-REPLY-HEADER rules [0,1] on |Wed, 29 Aug 2012 23:49:27 GMT|
+1362692527.009512/1559833828.494491 [dpd] HTTP[3] DeliverStream(20, F) [Accept-Ranges: bytes]
+1362692527.009512/1559833828.494497 [rules] Matching HTTP-REPLY-HEADER rules [1,0] on |ETag|
+1362692527.009512/1559833828.494500 [rules] Matching HTTP-REPLY-HEADER rules [0,0] on |: |
+1362692527.009512/1559833828.494504 [rules] Matching HTTP-REPLY-HEADER rules [0,1] on |"1261-4c870358a6fc0"|
+1362692527.009512/1559833828.494512 [dpd] HTTP[3] DeliverStream(20, F) [Content-Length: 4705]
+1362692527.009512/1559833828.494517 [rules] Matching HTTP-REPLY-HEADER rules [1,0] on |Accept-Ranges|
+1362692527.009512/1559833828.494521 [rules] Matching HTTP-REPLY-HEADER rules [0,0] on |: |
+1362692527.009512/1559833828.494525 [rules] Matching HTTP-REPLY-HEADER rules [0,1] on |bytes|
+1362692527.009512/1559833828.494533 [dpd] HTTP[3] DeliverStream(30, F) [Keep-Alive: timeout=5, max=100]
+1362692527.009512/1559833828.494538 [rules] Matching HTTP-REPLY-HEADER rules [1,0] on |Content-Length|
+1362692527.009512/1559833828.494542 [rules] Matching HTTP-REPLY-HEADER rules [0,0] on |: |
+1362692527.009512/1559833828.494546 [rules] Matching HTTP-REPLY-HEADER rules [0,1] on |4705|
+1362692527.009512/1559833828.494553 [dpd] HTTP[3] DeliverStream(22, F) [Connection: Keep-Alive]
+1362692527.009512/1559833828.494559 [rules] Matching HTTP-REPLY-HEADER rules [1,0] on |Keep-Alive|
+1362692527.009512/1559833828.494567 [rules] Matching HTTP-REPLY-HEADER rules [0,0] on |: |
+1362692527.009512/1559833828.494570 [rules] Matching HTTP-REPLY-HEADER rules [0,1] on |timeout=5, max=100|
+1362692527.009512/1559833828.494579 [dpd] HTTP[3] DeliverStream(39, F) [Content-Type: text/plain; charset=UTF-8]
+1362692527.009512/1559833828.494584 [rules] Matching HTTP-REPLY-HEADER rules [1,0] on |Connection|
+1362692527.009512/1559833828.494588 [rules] Matching HTTP-REPLY-HEADER rules [0,0] on |: |
+1362692527.009512/1559833828.494592 [rules] Matching HTTP-REPLY-HEADER rules [0,1] on |Keep-Alive|
+1362692527.009512/1559833828.494599 [dpd] HTTP[3] DeliverStream(0, F) []
+1362692527.009512/1559833828.494605 [rules] Matching HTTP-REPLY-HEADER rules [1,0] on |Content-Type|
+1362692527.009512/1559833828.494609 [rules] Matching HTTP-REPLY-HEADER rules [0,0] on |: |
+1362692527.009512/1559833828.494613 [rules] Matching HTTP-REPLY-HEADER rules [0,1] on |text/plain; charset=UTF-8|
+1362692527.009512/1559833828.494621 [dpd] HTTP[3] DeliverStream(1146, F) [\x0a0.26 | 2012-08-24 15:10:04 -0700\x0a\x0a  * F...]
+1362692527.009512/1559833828.494841 [rules] Matching HTTP-REPLY-BODY rules [1,0] on |\x0a0.26 | 2012-08-24 15:10:04 -0700\x0a\x0a  * F...|
+1362692527.009512/1559833828.494852 [dpd] PIA_TCP[2] DeliverStream(1448, F) [HTTP/1.1 200 OK\x0d\x0aDate: Thu, 07 Mar 2013 ...]
+1362692527.009512/1559833828.494857 [rules] Matching Payload rules [0,0] on |HTTP/1.1 200 OK\x0d\x0aDate: Thu, 07 Mar 2013 ...|
+1362692527.009512/1559833828.495126 [rules] New pattern match found
+1362692527.009512/1559833828.495134 [rules] Checking rule: dpd_http_server
+1362692527.009512/1559833828.495138 [rules] All patterns of rule satisfied
+1362692527.009512/1559833828.495142 [rules] Accepted rule: dpd_http_server
+1362692527.009512/1559833828.495146 [rules] Checking for accepted rule on HdrTest 1
+1362692527.009512/1559833828.495149 [rules] Checking for accepted rule on HdrTest 44
+1362692527.009512/1559833828.495153 [rules] On current node
+1362692527.009512/1559833828.495157 [rules] And has not already fired
+1362692527.009512/1559833828.495160 [rules] Evaluating conditions for rule dpd_http_server
+1362692527.009512/1559833828.495165 [rules] Conditions met: MATCH! dpd_http_server
+1362692527.009512/1559833828.495173 [dpd] CONNSIZE[6] DeliverPacket(1448, F, 1, 0x7ffc06367620, 1448) [HTTP/1.1 200 OK\x0d\x0aDate: Thu, 07 Mar 2013 ...]
+1362692527.009512/1559833828.495186 [main-loop] realtime=1559833828.495186 iosrc=PktSrc ts=1362692527.009721
+1362692527.009721/1559833828.495204 [dpd] TCP[1] DeliverPacket(1480, T, 18446744073709551615, 0x7ffc06367620, 1480) [\x00P\xe9\xd0\xa5\xaf\xd3\xe7\xfe!2\xc3\x80\x10\x00z\xef\xff\x00\x00\x01\x01\x08\x0a/\x89B\x9f\x16J\xddf   rathe...]
+1362692527.009721/1559833828.495213 [dpd] CONTENTLINE[5] DeliverStream(1448, F) [   rather than all. (Robin Sommer)\x0a\x0a  * ...]
+1362692527.009721/1559833828.495218 [dpd] HTTP[3] DeliverStream(1448, F) [   rather than all. (Robin Sommer)\x0a\x0a  * ...]
+1362692527.009721/1559833828.495228 [rules] Matching HTTP-REPLY-BODY rules [0,0] on |   rather than all. (Robin Sommer)\x0a\x0a  * ...|
+1362692527.009721/1559833828.495234 [dpd] PIA_TCP[2] DeliverStream(1448, F) [   rather than all. (Robin Sommer)\x0a\x0a  * ...]
+1362692527.009721/1559833828.495239 [dpd] CONNSIZE[6] DeliverPacket(1448, F, 1449, 0x7ffc06367620, 1448) [   rather than all. (Robin Sommer)\x0a\x0a  * ...]
+1362692527.009721/1559833828.495251 [main-loop] realtime=1559833828.495251 iosrc=PktSrc ts=1362692527.009765
+1362692527.009765/1559833828.495266 [dpd] TCP[1] DeliverPacket(1480, T, 18446744073709551615, 0x7ffc06367620, 1480) [\x00P\xe9\xd0\xa5\xaf\xd9\x8f\xfe!2\xc3\x80\x10\x00z\x80\x93\x00\x00\x01\x01\x08\x0a/\x89B\x9f\x16J\xddfs/check-...]
+1362692527.009765/1559833828.495274 [dpd] CONTENTLINE[5] DeliverStream(1448, F) [s/check-release to run before making rel...]
+1362692527.009765/1559833828.495279 [dpd] HTTP[3] DeliverStream(1448, F) [s/check-release to run before making rel...]
+1362692527.009765/1559833828.495304 [rules] Matching HTTP-REPLY-BODY rules [0,0] on |s/check-release to run before making rel...|
+1362692527.009765/1559833828.495310 [dpd] PIA_TCP[2] DeliverStream(1448, F) [s/check-release to run before making rel...]
+1362692527.009765/1559833828.495315 [dpd] CONNSIZE[6] DeliverPacket(1448, F, 2897, 0x7ffc06367620, 1448) [s/check-release to run before making rel...]
+1362692527.009765/1559833828.495323 [main-loop] realtime=1559833828.495323 iosrc=PktSrc ts=1362692527.009775
+1362692527.009775/1559833828.495338 [dpd] TCP[1] DeliverPacket(695, T, 18446744073709551615, 0x7ffc06367620, 695) [\x00P\xe9\xd0\xa5\xaf\xdf7\xfe!2\xc3\x80\x18\x00z\xa5(\x00\x00\x01\x01\x08\x0a/\x89B\x9f\x16J\xddf thread ...]
+1362692527.009775/1559833828.495347 [dpd] CONTENTLINE[5] DeliverStream(663, F) [ thread library when necessary (e.g.\x0a   ...]
+1362692527.009775/1559833828.495352 [dpd] HTTP[3] DeliverStream(663, F) [ thread library when necessary (e.g.\x0a   ...]
+1362692527.009775/1559833828.495373 [rules] Matching File Magic rules on |\x0a0.26 | 2012-08-24 15:10:04 -0700\x0a\x0a  * F...|
+1362692527.009775/1559833828.498414 [rules] New pattern match found
+1362692527.009775/1559833828.498424 [rules] Checking rule: file-plaintext
+1362692527.009775/1559833828.498443 [rules] All patterns of rule satisfied
+1362692527.009775/1559833828.498508 [rules] Matching HTTP-REPLY-BODY rules [0,0] on | thread library when necessary (e.g.\x0a   ...|
+1362692527.009775/1559833828.498657 [dpd] PIA_TCP[2] DeliverStream(663, F) [ thread library when necessary (e.g.\x0a   ...]
+1362692527.009775/1559833828.498667 [dpd] CONNSIZE[6] DeliverPacket(663, F, 4345, 0x7ffc06367620, 663) [ thread library when necessary (e.g.\x0a   ...]
+1362692527.009775/1559833828.498753 [main-loop] realtime=1559833828.498753 iosrc=threading::Manager ts=1362692527.009775
+1362692527.009775/1559833828.498785 [main-loop] realtime=1559833828.498785 iosrc=threading::Manager ts=1362692527.009775
+1362692527.009775/1559833828.498795 [main-loop] realtime=1559833828.498795 iosrc=threading::Manager ts=1362692527.009775
+1362692527.009775/1559833828.498803 [main-loop] realtime=1559833828.498803 iosrc=PktSrc ts=1362692527.009855
+1362692527.009855/1559833828.498840 [dpd] TCP[1] DeliverPacket(32, T, 18446744073709551615, 0x7ffc06367620, 32) [\xe9\xd0\x00P\xfe!2\xc3\xa5\xaf\xd9\x8f\x80\x10\x1fvi\x8c\x00\x00\x01\x01\x08\x0a\x16J\xdd\xac/\x89B\x9f]
+1362692527.009855/1559833828.498863 [dpd] CONNSIZE[6] DeliverPacket(0, T, 137, 0x7ffc06367620, 0) []
+1362692527.009855/1559833828.498876 [main-loop] realtime=1559833828.498876 iosrc=PktSrc ts=1362692527.009887
+1362692527.009887/1559833828.498901 [dpd] TCP[1] DeliverPacket(32, T, 18446744073709551615, 0x7ffc06367620, 32) [\xe9\xd0\x00P\xfe!2\xc3\xa5\xaf\xe1\xce\x80\x10\x1e\xf2a\xd1\x00\x00\x01\x01\x08\x0a\x16J\xdd\xac/\x89B\x9f]
+1362692527.009887/1559833828.498911 [dpd] CONNSIZE[6] DeliverPacket(0, T, 137, 0x7ffc06367620, 0) []
+1362692527.009887/1559833828.498934 [main-loop] realtime=1559833828.498934 iosrc=PktSrc ts=1362692527.011846
+1362692527.011846/1559833828.498973 [dpd] TCP[1] DeliverPacket(32, T, 18446744073709551615, 0x7ffc06367620, 32) [\xe9\xd0\x00P\xfe!2\xc3\xa5\xaf\xe1\xce\x80\x11 \x00`\xc0\x00\x00\x01\x01\x08\x0a\x16J\xdd\xae/\x89B\x9f]
+1362692527.011846/1559833828.498985 [dpd] CONNSIZE[6] DeliverPacket(0, T, 137, 0x7ffc06367620, 0) []
+1362692527.011846/1559833828.499021 [main-loop] realtime=1559833828.499021 iosrc=PktSrc ts=1362692527.080828
+1362692527.080828/1559833828.499044 [dpd] TCP[1] DeliverPacket(32, T, 18446744073709551615, 0x7ffc06367620, 32) [\x00P\xe9\xd0\xa5\xaf\xe1\xce\xfe!2\xc4\x80\x11\x00z\x7f\xfd\x00\x00\x01\x01\x08\x0a/\x89B\xe7\x16J\xdd\xae]
+1362692527.080828/1559833828.499058 [dpd] CONNSIZE[6] DeliverPacket(0, F, 5008, 0x7ffc06367620, 0) []
+1362692527.080828/1559833828.499068 [main-loop] realtime=1559833828.499068 iosrc=PktSrc ts=1362692527.080972
+1362692527.080972/1559833828.499091 [dpd] TCP[1] DeliverPacket(32, T, 18446744073709551615, 0x7ffc06367620, 32) [\xe9\xd0\x00P\xfe!2\xc4\xa5\xaf\xe1\xcf\x80\x10 \x00`3\x00\x00\x01\x01\x08\x0a\x16J\xdd\xf2/\x89B\xe7]
+1362692527.080972/1559833828.499107 [dpd] CONNSIZE[6] DeliverPacket(0, T, 138, 0x7ffc06367620, 0) []
+1362692527.080972/1559833828.499134 [main-loop] realtime=1559833828.499134 iosrc=<all dry> ts=-1.000000
+1362692527.080972/1559833828.499177 [dpd] TCP[1] EndOfData(T)
+1362692527.080972/1559833828.499185 [dpd] TCP[1] EndOfData(F)
+1362692527.080972/1559833828.499190 [dpd] HTTP[3] EndOfData(T)
+1362692527.080972/1559833828.499194 [dpd] HTTP[3] EndOfData(F)
+1362692527.080972/1559833828.499198 [dpd] CONTENTLINE[4] EndOfData(T)
+1362692527.080972/1559833828.499202 [dpd] CONTENTLINE[4] EndOfData(F)
+1362692527.080972/1559833828.499206 [dpd] CONTENTLINE[5] EndOfData(T)
+1362692527.080972/1559833828.499210 [dpd] CONTENTLINE[5] EndOfData(F)
+1362692527.080972/1559833828.499243 [dpd] PIA_TCP[2] EndOfData(T)
+1362692527.080972/1559833828.499251 [dpd] PIA_TCP[2] EndOfData(F)
+1362692527.080972/1559833828.499255 [rules] Matching Payload rules [0,1] on ||
+1362692527.080972/1559833828.499262 [rules] Matching Payload rules [0,1] on ||
+1362692527.080972/1559833828.499271 [dpd] CONNSIZE[6] EndOfData(T)
+1362692527.080972/1559833828.499276 [dpd] CONNSIZE[6] EndOfData(F)

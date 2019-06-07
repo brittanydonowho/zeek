@@ -157,6 +157,7 @@ function new_http_session(c: connection): Info
 	tmp$uid=c$uid;
 	tmp$id=c$id;
 	tmp$trans_depth = ++c$http_state$trans_depth;
+	print fmt("Registered HTTP session for %s", c$uid);
 	return tmp;
 	}
 
