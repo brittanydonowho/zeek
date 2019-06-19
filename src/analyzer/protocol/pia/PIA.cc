@@ -254,7 +254,8 @@ void PIA_TCP::FirstPacket(bool is_orig, const IP_Hdr* ip)
 
 void PIA_TCP::DeliverStream(int len, const u_char* data, bool is_orig)
 	{
-	tcp::TCP_ApplicationAnalyzer::DeliverStream(len, data, is_orig);
+//    std::cout << "###################\n# Delivering Data #\n###################" << std::endl << data << std::endl;
+    tcp::TCP_ApplicationAnalyzer::DeliverStream(len, data, is_orig);
 
 	if ( stream_buffer.state == SKIPPING )
 		return;
