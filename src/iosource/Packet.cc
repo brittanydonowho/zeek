@@ -120,14 +120,14 @@ int Packet::GetLinkHeaderSize(int link_type)
 void Packet::ProcessLayer2()
 	{
     DBG_LOG(DBG_LLPOC, "[LAYER 2] Next packet with ts=%f has link type %d", time, link_type);
-    for (size_t i = 0; i < len; i++) {
-        if (data[i] > 33 && data[i] < 127) {
-            printf("\033[0;32m %c \033[0m", data[i]);
-        } else {
-            printf("%02x ", data[i]);
-        }
-    }
-    puts("\n");
+//    for (size_t i = 0; i < len; i++) {
+//        if (data[i] > 33 && data[i] < 127) {
+//            printf("\033[0;32m %c \033[0m", data[i]);
+//        } else {
+//            printf("%02x ", data[i]);
+//        }
+//    }
+//    puts("\n");
     l2_valid = true;
 
 	// Unfortunately some packets on the link might have MPLS labels
