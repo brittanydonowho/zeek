@@ -8,6 +8,7 @@ if ( NOT ZEEK_DIST )
 endif ()
 
 set(CMAKE_MODULE_PATH ${ZEEK_DIST}/cmake)
+message(${CMAKE_MODULE_PATH})
 
 include(ZeekPlugin)
 
