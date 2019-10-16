@@ -178,7 +178,7 @@ public:
 	/**
 	 *
 	 */
-	bool BuildAnalyzerTree(Connection* conn);
+	bool BuildAnalyzerTree();
 
 private:
 	typedef set<Tag> tag_set;

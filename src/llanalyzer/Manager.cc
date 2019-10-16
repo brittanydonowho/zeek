@@ -28,11 +28,10 @@ void Manager::InitPostScript() {
 
 void Manager::DumpDebug() {
 #ifdef DEBUG
-    DBG_LOG(DBG_ANALYZER, "Available analyzers after zeek_init():");
+    DBG_LOG(DBG_LLPOC, "Available analyzers after zeek_init():");
     list<Component *> all_analyzers = GetComponents();
     for (list<Component *>::const_iterator i = all_analyzers.begin(); i != all_analyzers.end(); ++i) {
-        DBG_LOG(DBG_ANALYZER, "    %s (%s)", (*i)->Name().c_str(),
-                IsEnabled((*i)->Tag()) ? "enabled" : "disabled");
+        DBG_LOG(DBG_LLPOC, "    %s (%s)", (*i)->Name().c_str(), IsEnabled((*i)->Tag()) ? "enabled" : "disabled");
     }
 
 #endif
@@ -97,7 +96,7 @@ void Manager::DisableAllAnalyzers() {
         analyzer->SetEnabled(false);
 }
 
-analyzer::Tag Manager::GetAnalyzerTag(const char *name) {
+llanalyzer::Tag Manager::GetAnalyzerTag(const char *name) {
     return GetComponentTag(name);
 }
 
@@ -122,12 +121,12 @@ bool Manager::IsEnabled(EnumVal *val) {
     return p->Enabled();
 }
 
-Analyzer *Manager::InstantiateAnalyzer(const Tag& tag) {
+LLAnalyzer* Manager::InstantiateAnalyzer(const Tag& tag) {
     // TODO Implement
     return nullptr;
 }
 
-Analyzer *Manager::InstantiateAnalyzer(const char *name) {
+LLAnalyzer* Manager::InstantiateAnalyzer(const char *name) {
     Tag tag = GetComponentTag(name);
     return tag ? InstantiateAnalyzer(tag) : nullptr;
 }

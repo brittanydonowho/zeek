@@ -24,7 +24,7 @@ class LLAnalyzer;
  * analyzer component, describing the analyzer.
  */
 class Component : public plugin::Component,
-                  public plugin::TaggedComponent<analyzer::Tag> {
+                  public plugin::TaggedComponent<llanalyzer::Tag> {
 public:
 	typedef LLAnalyzer* (*factory_callback)(Connection* conn);
 
