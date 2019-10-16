@@ -3,7 +3,8 @@
 #ifndef ANALYZER_COMPONENT_H
 #define ANALYZER_COMPONENT_H
 
-#include "Tag.h"
+#include "../analyzer/Tag.h"
+
 #include "plugin/Component.h"
 #include "plugin/TaggedComponent.h"
 
@@ -12,9 +13,9 @@
 
 class Connection;
 
-namespace analyzer {
+namespace llanalyzer {
 
-class Analyzer;
+class LLAnalyzer;
 
 /**
  * Component description for plugins providing analyzers.
@@ -25,7 +26,7 @@ class Analyzer;
 class Component : public plugin::Component,
                   public plugin::TaggedComponent<analyzer::Tag> {
 public:
-	typedef Analyzer* (*factory_callback)(Connection* conn);
+	typedef LLAnalyzer* (*factory_callback)(Connection* conn);
 
 	/**
 	 * Constructor.

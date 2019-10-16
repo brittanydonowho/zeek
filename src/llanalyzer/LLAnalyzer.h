@@ -21,14 +21,14 @@ namespace analyzer {
 namespace tcp { class TCP_ApplicationAnalyzer; }
 namespace pia { class PIA; }
 
-class Analyzer;
+class LLAnalyzer;
 class AnalyzerTimer;
 class SupportAnalyzer;
 class OutputHandler;
 
-typedef list<Analyzer*> analyzer_list;
+typedef list<LLAnalyzer*> analyzer_list;
 typedef uint32_t ID;
-typedef void (Analyzer::*analyzer_timer_func)(double t);
+typedef void (LLAnalyzer::*analyzer_timer_func)(double t);
 
 /**
  * Class to receive processed output from an anlyzer.
@@ -74,7 +74,7 @@ public:
  * When overiding any of the class' methods, always make sure to call the
  * base-class version first.
  */
-class Analyzer {
+class LLAnalyzer {
 public:
 	/**
 	 * Constructor.
@@ -84,7 +84,7 @@ public:
 	 *
 	 * @param conn The connection the analyzer is associated with.
 	 */
-	Analyzer(const char* name, Connection* conn);
+	LLAnalyzer(const char* name, Connection* conn);
 
 	/**
 	 * Constructor.
@@ -94,7 +94,7 @@ public:
 	 *
 	 * @param conn The connection the analyzer is associated with.
 	 */
-	Analyzer(const Tag& tag, Connection* conn);
+	LLAnalyzer(const Tag& tag, Connection* conn);
 
 	/**
 	 * Constructor. As this version of the constructor does not receive a
@@ -103,12 +103,12 @@ public:
 	 *
 	 * @param conn The connection the analyzer is associated with.
 	 */
-	explicit Analyzer(Connection* conn);
+	explicit LLAnalyzer(Connection* conn);
 
 	/**
 	 * Destructor.
 	 */
-	virtual ~Analyzer();
+	virtual ~LLAnalyzer();
 
 	/**
 	 * Initializes the analyzer before input processing starts.
@@ -362,7 +362,7 @@ public:
 	 * @param analyzer The ananlyzer to add. Takes ownership.
 	 * @return false if analyzer type was already a child or prevented, else true.
 	 */
-	bool AddChildAnalyzer(Analyzer* analyzer)
+	bool AddChildAnalyzer(LLAnalyzer* analyzer)
 		{ return AddChildAnalyzer(analyzer, true); }
 
 	/**
@@ -373,7 +373,7 @@ public:
 	 * @param tag The type of analyzer to add.
 	 * @return the new analyzer instance that was added.
 	 */
-	Analyzer* AddChildAnalyzer(Tag tag);
+	LLAnalyzer* AddChildAnalyzer(Tag tag);
 
 	/**
 	 * Removes a child analyzer. It's ok for the analyzer to not to be a
@@ -384,7 +384,7 @@ public:
 	 * @return whether the child analyzer is scheduled for removal
 	 * (and was not before).
 	 */
-	bool RemoveChildAnalyzer(Analyzer* analyzer)
+	bool RemoveChildAnalyzer(LLAnalyzer* analyzer)
 		{ return RemoveChildAnalyzer(analyzer->GetID()); }
 
 	/**
@@ -421,7 +421,7 @@ public:
 	 *
 	 * @return The analyzer, or null if not found.
 	 */
-	virtual Analyzer* FindChild(ID id);
+	virtual LLAnalyzer* FindChild(ID id);
 
 	/**
 	 * Recursively searches all (direct or indirect) childs of the
@@ -432,7 +432,7 @@ public:
 	 * @return The first analyzer of the given type found, or null if
 	 * none.
 	 */
-	virtual Analyzer* FindChild(Tag tag);
+	virtual LLAnalyzer* FindChild(Tag tag);
 
 	/**
 	 * Recursively searches all (direct or indirect) childs of the
@@ -444,7 +444,7 @@ public:
 	 * @return The first analyzer of the given type found, or null if
 	 * none.
 	 */
-	Analyzer* FindChild(const char* name);
+	LLAnalyzer* FindChild(const char* name);
 
 	/**
 	 * Returns a list of all direct child analyzers.
@@ -459,14 +459,14 @@ public:
 	 * Returns a pointer to the parent analyzer, or null if this instance
 	 * has not yet been added to an analyzer tree.
 	 */
-	Analyzer* Parent() const	{ return parent; }
+	LLAnalyzer* Parent() const	{ return parent; }
 
 	/**
 	 * Sets the parent analyzer.
 	 *
 	 * @param p The new parent.
 	 */
-	void SetParent(Analyzer* p)	{ parent = p; }
+	void SetParent(LLAnalyzer* p)	{ parent = p; }
 
 	/**
 	 * Remove the analyzer form its parent. The analyzer must have a
@@ -597,7 +597,7 @@ protected:
 	 * Return a string represantation of an analyzer, containing its name
 	 * and ID.
 	 */
-	static string fmt_analyzer(const Analyzer* a)
+	static string fmt_analyzer(const LLAnalyzer* a)
 		{ return string(a->GetAnalyzerName()) + fmt("[%d]", a->GetID()); }
 
 	/**
@@ -661,7 +661,7 @@ protected:
 	 * @param init If true, Init() will be calle.d
 	 * @return false if analyzer type was already a child, else true.
 	 */
-	bool AddChildAnalyzer(Analyzer* analyzer, bool init);
+	bool AddChildAnalyzer(LLAnalyzer* analyzer, bool init);
 
 	/**
 	 * Inits all child analyzers. This is an internal method.
@@ -691,7 +691,7 @@ private:
 	ID id;
 
 	Connection* conn;
-	Analyzer* parent;
+	LLAnalyzer* parent;
 	const Rule* signature;
 	OutputHandler* output_handler;
 
@@ -755,7 +755,7 @@ private:
  * are uni-directional: they receive data only from one side of a connection.
  *
  */
-class SupportAnalyzer : public Analyzer {
+class SupportAnalyzer : public LLAnalyzer {
 public:
 	/**
 	 * Constructor.
@@ -769,7 +769,7 @@ public:
 	 * connection originator side, and otherwise for the responder side.
 	 */
 	SupportAnalyzer(const char* name, Connection* conn, bool arg_orig)
-		: Analyzer(name, conn)	{ orig = arg_orig; sibling = 0; }
+		: LLAnalyzer(name, conn)	{ orig = arg_orig; sibling = 0; }
 
 	/**
 	 * Destructor.
@@ -822,7 +822,7 @@ public:
 	void ForwardUndelivered(uint64_t seq, int len, bool orig) override;
 
 protected:
-	friend class Analyzer;
+	friend class LLAnalyzer;
 
 private:
 	bool orig;
@@ -841,7 +841,7 @@ private:
 /**
  * Base class for analyzers parsing transport-layer protocols.
  */
-class TransportLayerAnalyzer : public Analyzer {
+class TransportLayerAnalyzer : public LLAnalyzer {
 public:
 	/**
 	 * Constructor.
@@ -852,7 +852,7 @@ public:
 	 * @param conn The connection the analyzer is associated with.
 	 */
 	TransportLayerAnalyzer(const char* name, Connection* conn)
-		: Analyzer(name, conn)	{ pia = 0; }
+		: LLAnalyzer(name, conn)	{ pia = 0; }
 
 	/**
 	 * Overridden from parent class.

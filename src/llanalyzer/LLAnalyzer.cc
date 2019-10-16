@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "Analyzer.h"
+#include "LLAnalyzer.h"
 #include "Manager.h"
 #include "binpac.h"
 
@@ -13,8 +13,8 @@ namespace analyzer {
 
 class AnalyzerTimer : public Timer {
 public:
-	AnalyzerTimer(Analyzer* arg_analyzer, analyzer_timer_func arg_timer,
-			double arg_t, int arg_do_expire, TimerType arg_type);
+	AnalyzerTimer(LLAnalyzer* arg_analyzer, analyzer_timer_func arg_timer,
+                  double arg_t, int arg_do_expire, TimerType arg_type);
 
 	virtual ~AnalyzerTimer();
 
@@ -23,9 +23,9 @@ public:
 protected:
 	AnalyzerTimer() : analyzer(), timer(), do_expire()	{}
 
-	void Init(Analyzer* analyzer, analyzer_timer_func timer, int do_expire);
+	void Init(LLAnalyzer* analyzer, analyzer_timer_func timer, int do_expire);
 
-	Analyzer* analyzer;
+	LLAnalyzer* analyzer;
 	analyzer_timer_func timer;
 	int do_expire;
 };
@@ -34,8 +34,8 @@ protected:
 
 using namespace analyzer;
 
-AnalyzerTimer::AnalyzerTimer(Analyzer* arg_analyzer, analyzer_timer_func arg_timer,
-			     double arg_t, int arg_do_expire, TimerType arg_type)
+AnalyzerTimer::AnalyzerTimer(LLAnalyzer* arg_analyzer, analyzer_timer_func arg_timer,
+                             double arg_t, int arg_do_expire, TimerType arg_type)
 	: Timer(arg_t, arg_type)
 	{
 	Init(arg_analyzer, arg_timer, arg_do_expire);
@@ -59,8 +59,8 @@ void AnalyzerTimer::Dispatch(double t, int is_expire)
 	(analyzer->*timer)(t);
 	}
 
-void AnalyzerTimer::Init(Analyzer* arg_analyzer, analyzer_timer_func arg_timer,
-				int arg_do_expire)
+void AnalyzerTimer::Init(LLAnalyzer* arg_analyzer, analyzer_timer_func arg_timer,
+                         int arg_do_expire)
 	{
 	analyzer = arg_analyzer;
 	timer = arg_timer;
@@ -71,27 +71,27 @@ void AnalyzerTimer::Init(Analyzer* arg_analyzer, analyzer_timer_func arg_timer,
 	Ref(analyzer->Conn());
 	}
 
-analyzer::ID Analyzer::id_counter = 0;
+analyzer::ID LLAnalyzer::id_counter = 0;
 
-const char* Analyzer::GetAnalyzerName() const
+const char* LLAnalyzer::GetAnalyzerName() const
 	{
 	assert(tag);
 	return analyzer_mgr->GetComponentName(tag).c_str();
 	}
 
-void Analyzer::SetAnalyzerTag(const Tag& arg_tag)
+void LLAnalyzer::SetAnalyzerTag(const Tag& arg_tag)
 	{
 	assert(! tag || tag == arg_tag);
 	tag = arg_tag;
 	}
 
-bool Analyzer::IsAnalyzer(const char* name)
+bool LLAnalyzer::IsAnalyzer(const char* name)
 	{
 	assert(tag);
 	return strcmp(analyzer_mgr->GetComponentName(tag).c_str(), name) == 0;
 	}
 
-Analyzer::Analyzer(const char* name, Connection* conn)
+LLAnalyzer::LLAnalyzer(const char* name, Connection* conn)
 	{
 	Tag tag = analyzer_mgr->GetComponentTag(name);
 
@@ -101,17 +101,17 @@ Analyzer::Analyzer(const char* name, Connection* conn)
 	CtorInit(tag, conn);
 	}
 
-Analyzer::Analyzer(const Tag& tag, Connection* conn)
+LLAnalyzer::LLAnalyzer(const Tag& tag, Connection* conn)
 	{
 	CtorInit(tag, conn);
 	}
 
-Analyzer::Analyzer(Connection* conn)
+LLAnalyzer::LLAnalyzer(Connection* conn)
 	{
 	CtorInit(Tag(), conn);
 	}
 
-void Analyzer::CtorInit(const Tag& arg_tag, Connection* arg_conn)
+void LLAnalyzer::CtorInit(const Tag& arg_tag, Connection* arg_conn)
 	{
 	// Don't Ref conn here to avoid circular ref'ing. It can't be deleted
 	// before us.
@@ -130,7 +130,7 @@ void Analyzer::CtorInit(const Tag& arg_tag, Connection* arg_conn)
 	output_handler = 0;
 	}
 
-Analyzer::~Analyzer()
+LLAnalyzer::~LLAnalyzer()
 	{
 	assert(finished);
 
@@ -154,11 +154,11 @@ Analyzer::~Analyzer()
 	delete output_handler;
 	}
 
-void Analyzer::Init()
+void LLAnalyzer::Init()
 	{
 	}
 
-void Analyzer::InitChildren()
+void LLAnalyzer::InitChildren()
 	{
 	AppendNewChildren();
 
@@ -169,7 +169,7 @@ void Analyzer::InitChildren()
 		}
 	}
 
-void Analyzer::Done()
+void LLAnalyzer::Done()
 	{
 	assert(!finished);
 
@@ -198,8 +198,8 @@ void Analyzer::Done()
 	finished = true;
 	}
 
-void Analyzer::NextPacket(int len, const u_char* data, bool is_orig, uint64_t seq,
-				const IP_Hdr* ip, int caplen)
+void LLAnalyzer::NextPacket(int len, const u_char* data, bool is_orig, uint64_t seq,
+                            const IP_Hdr* ip, int caplen)
 	{
 	if ( skip )
 		return;
@@ -222,7 +222,7 @@ void Analyzer::NextPacket(int len, const u_char* data, bool is_orig, uint64_t se
 		}
 	}
 
-void Analyzer::NextStream(int len, const u_char* data, bool is_orig)
+void LLAnalyzer::NextStream(int len, const u_char* data, bool is_orig)
 	{
 	if ( skip )
 		return;
@@ -245,7 +245,7 @@ void Analyzer::NextStream(int len, const u_char* data, bool is_orig)
 		}
 	}
 
-void Analyzer::NextUndelivered(uint64_t seq, int len, bool is_orig)
+void LLAnalyzer::NextUndelivered(uint64_t seq, int len, bool is_orig)
 	{
 	if ( skip )
 		return;
@@ -268,7 +268,7 @@ void Analyzer::NextUndelivered(uint64_t seq, int len, bool is_orig)
 		}
 	}
 
-void Analyzer::NextEndOfData(bool is_orig)
+void LLAnalyzer::NextEndOfData(bool is_orig)
 	{
 	if ( skip )
 		return;
@@ -281,8 +281,8 @@ void Analyzer::NextEndOfData(bool is_orig)
 		EndOfData(is_orig);
 	}
 
-void Analyzer::ForwardPacket(int len, const u_char* data, bool is_orig,
-				uint64_t seq, const IP_Hdr* ip, int caplen)
+void LLAnalyzer::ForwardPacket(int len, const u_char* data, bool is_orig,
+                               uint64_t seq, const IP_Hdr* ip, int caplen)
 	{
 	if ( output_handler )
 		output_handler->DeliverPacket(len, data, is_orig, seq,
@@ -295,7 +295,7 @@ void Analyzer::ForwardPacket(int len, const u_char* data, bool is_orig,
 	for ( analyzer_list::iterator i = children.begin();
 	      i != children.end(); i = next )
 		{
-		Analyzer* current = *i;
+		LLAnalyzer* current = *i;
 		next = ++i;
 
 		if ( ! (current->finished || current->removing ) )
@@ -307,7 +307,7 @@ void Analyzer::ForwardPacket(int len, const u_char* data, bool is_orig,
 	AppendNewChildren();
 	}
 
-void Analyzer::ForwardStream(int len, const u_char* data, bool is_orig)
+void LLAnalyzer::ForwardStream(int len, const u_char* data, bool is_orig)
 	{
 	if ( output_handler )
 		output_handler->DeliverStream(len, data, is_orig);
@@ -318,7 +318,7 @@ void Analyzer::ForwardStream(int len, const u_char* data, bool is_orig)
 	for ( analyzer_list::iterator i = children.begin();
 	      i != children.end(); i = next )
 		{
-		Analyzer* current = *i;
+		LLAnalyzer* current = *i;
 		next = ++i;
 
 		if ( ! (current->finished || current->removing ) )
@@ -330,7 +330,7 @@ void Analyzer::ForwardStream(int len, const u_char* data, bool is_orig)
 	AppendNewChildren();
 	}
 
-void Analyzer::ForwardUndelivered(uint64_t seq, int len, bool is_orig)
+void LLAnalyzer::ForwardUndelivered(uint64_t seq, int len, bool is_orig)
 	{
 	if ( output_handler )
 		output_handler->Undelivered(seq, len, is_orig);
@@ -341,7 +341,7 @@ void Analyzer::ForwardUndelivered(uint64_t seq, int len, bool is_orig)
 	for ( analyzer_list::iterator i = children.begin();
 	      i != children.end(); i = next )
 		{
-		Analyzer* current = *i;
+		LLAnalyzer* current = *i;
 		next = ++i;
 
 		if ( ! (current->finished || current->removing ) )
@@ -353,7 +353,7 @@ void Analyzer::ForwardUndelivered(uint64_t seq, int len, bool is_orig)
 	AppendNewChildren();
 	}
 
-void Analyzer::ForwardEndOfData(bool orig)
+void LLAnalyzer::ForwardEndOfData(bool orig)
 	{
 	AppendNewChildren();
 
@@ -361,7 +361,7 @@ void Analyzer::ForwardEndOfData(bool orig)
 	for ( analyzer_list::iterator i = children.begin();
 	      i != children.end(); i = next )
 		{
-		Analyzer* current = *i;
+		LLAnalyzer* current = *i;
 		next = ++i;
 
 		if ( ! (current->finished || current->removing ) )
@@ -373,7 +373,7 @@ void Analyzer::ForwardEndOfData(bool orig)
 	AppendNewChildren();
 	}
 
-bool Analyzer::AddChildAnalyzer(Analyzer* analyzer, bool init)
+bool LLAnalyzer::AddChildAnalyzer(LLAnalyzer* analyzer, bool init)
 	{
 	auto t = analyzer->GetAnalyzerTag();
 	auto it = std::find(prevented.begin(), prevented.end(), t);
@@ -403,7 +403,7 @@ bool Analyzer::AddChildAnalyzer(Analyzer* analyzer, bool init)
 	return true;
 	}
 
-Analyzer* Analyzer::AddChildAnalyzer(Tag analyzer)
+LLAnalyzer* LLAnalyzer::AddChildAnalyzer(Tag analyzer)
 	{
 	if ( HasChildAnalyzer(analyzer) )
 		return nullptr;
@@ -413,7 +413,7 @@ Analyzer* Analyzer::AddChildAnalyzer(Tag analyzer)
 	if ( it != prevented.end() )
 		return nullptr;
 
-	Analyzer* a = analyzer_mgr->InstantiateAnalyzer(analyzer, conn);
+	LLAnalyzer* a = analyzer_mgr->InstantiateAnalyzer(analyzer, conn);
 
 	if ( a && AddChildAnalyzer(a) )
 		return a;
@@ -421,7 +421,7 @@ Analyzer* Analyzer::AddChildAnalyzer(Tag analyzer)
 	return nullptr;
 	}
 
-bool Analyzer::RemoveChild(const analyzer_list& children, ID id)
+bool LLAnalyzer::RemoveChild(const analyzer_list& children, ID id)
 	{
 	for ( const auto& i : children )
 		{
@@ -446,19 +446,19 @@ bool Analyzer::RemoveChild(const analyzer_list& children, ID id)
 	return false;
 	}
 
-bool Analyzer::RemoveChildAnalyzer(ID id)
+bool LLAnalyzer::RemoveChildAnalyzer(ID id)
 	{
 	return RemoveChild(children, id) || RemoveChild(new_children, id);
 	}
 
-bool Analyzer::Remove()
+bool LLAnalyzer::Remove()
 	{
 	assert(parent);
 	parent->RemoveChildAnalyzer(this);
 	return removing;
 	}
 
-void Analyzer::PreventChildren(Tag tag)
+void LLAnalyzer::PreventChildren(Tag tag)
 	{
 	auto it = std::find(prevented.begin(), prevented.end(), tag);
 
@@ -468,7 +468,7 @@ void Analyzer::PreventChildren(Tag tag)
 	prevented.emplace_back(tag);
 	}
 
-bool Analyzer::HasChildAnalyzer(Tag tag)
+bool LLAnalyzer::HasChildAnalyzer(Tag tag)
 	{
 	LOOP_OVER_CHILDREN(i)
 		if ( (*i)->tag == tag )
@@ -481,21 +481,21 @@ bool Analyzer::HasChildAnalyzer(Tag tag)
 	return false;
 	}
 
-Analyzer* Analyzer::FindChild(ID arg_id)
+LLAnalyzer* LLAnalyzer::FindChild(ID arg_id)
 	{
 	if ( id == arg_id )
 		return this;
 
 	LOOP_OVER_CHILDREN(i)
 		{
-		Analyzer* child = (*i)->FindChild(arg_id);
+		LLAnalyzer* child = (*i)->FindChild(arg_id);
 		if ( child )
 			return child;
 		}
 
 	LOOP_OVER_GIVEN_CHILDREN(i, new_children)
 		{
-		Analyzer* child = (*i)->FindChild(arg_id);
+		LLAnalyzer* child = (*i)->FindChild(arg_id);
 		if ( child )
 			return child;
 		}
@@ -503,21 +503,21 @@ Analyzer* Analyzer::FindChild(ID arg_id)
 	return 0;
 	}
 
-Analyzer* Analyzer::FindChild(Tag arg_tag)
+LLAnalyzer* LLAnalyzer::FindChild(Tag arg_tag)
 	{
 	if ( tag == arg_tag )
 		return this;
 
 	LOOP_OVER_CHILDREN(i)
 		{
-		Analyzer* child = (*i)->FindChild(arg_tag);
+		LLAnalyzer* child = (*i)->FindChild(arg_tag);
 		if ( child )
 			return child;
 		}
 
 	LOOP_OVER_GIVEN_CHILDREN(i, new_children)
 		{
-		Analyzer* child = (*i)->FindChild(arg_tag);
+		LLAnalyzer* child = (*i)->FindChild(arg_tag);
 		if ( child )
 			return child;
 		}
@@ -525,15 +525,15 @@ Analyzer* Analyzer::FindChild(Tag arg_tag)
 	return 0;
 	}
 
-Analyzer* Analyzer::FindChild(const char* name)
+LLAnalyzer* LLAnalyzer::FindChild(const char* name)
 	{
 	Tag tag = analyzer_mgr->GetComponentTag(name);
 	return tag ? FindChild(tag) : 0;
 	}
 
-void Analyzer::DeleteChild(analyzer_list::iterator i)
+void LLAnalyzer::DeleteChild(analyzer_list::iterator i)
 	{
-	Analyzer* child = *i;
+	LLAnalyzer* child = *i;
 
 	// Analyzer must have already been finished or marked for removal.
 	assert(child->finished || child->removing);
@@ -551,7 +551,7 @@ void Analyzer::DeleteChild(analyzer_list::iterator i)
 	delete child;
 	}
 
-void Analyzer::AddSupportAnalyzer(SupportAnalyzer* analyzer)
+void LLAnalyzer::AddSupportAnalyzer(SupportAnalyzer* analyzer)
 	{
 	if ( HasSupportAnalyzer(analyzer->GetAnalyzerTag(), analyzer->IsOrig()) )
 		{
@@ -589,7 +589,7 @@ void Analyzer::AddSupportAnalyzer(SupportAnalyzer* analyzer)
 			fmt_analyzer(analyzer).c_str());
 	}
 
-void Analyzer::RemoveSupportAnalyzer(SupportAnalyzer* analyzer)
+void LLAnalyzer::RemoveSupportAnalyzer(SupportAnalyzer* analyzer)
 	{
 	DBG_LOG(DBG_ANALYZER, "%s disabled %s support analyzer %s",
 			fmt_analyzer(this).c_str(),
@@ -605,7 +605,7 @@ void Analyzer::RemoveSupportAnalyzer(SupportAnalyzer* analyzer)
 	return;
 	}
 
-bool Analyzer::HasSupportAnalyzer(Tag tag, bool orig)
+bool LLAnalyzer::HasSupportAnalyzer(Tag tag, bool orig)
 	{
 	SupportAnalyzer* s = orig ? orig_supporters : resp_supporters;
 	for ( ; s; s = s->sibling )
@@ -615,7 +615,7 @@ bool Analyzer::HasSupportAnalyzer(Tag tag, bool orig)
 	return false;
 	}
 
-SupportAnalyzer* Analyzer::FirstSupportAnalyzer(bool orig)
+SupportAnalyzer* LLAnalyzer::FirstSupportAnalyzer(bool orig)
 	{
 	SupportAnalyzer* sa = orig ? orig_supporters : resp_supporters;
 
@@ -628,34 +628,34 @@ SupportAnalyzer* Analyzer::FirstSupportAnalyzer(bool orig)
 	return sa->Sibling(true);
 	}
 
-void Analyzer::DeliverPacket(int len, const u_char* data, bool is_orig,
-				uint64_t seq, const IP_Hdr* ip, int caplen)
+void LLAnalyzer::DeliverPacket(int len, const u_char* data, bool is_orig,
+                               uint64_t seq, const IP_Hdr* ip, int caplen)
 	{
 	DBG_LOG(DBG_ANALYZER, "%s DeliverPacket(%d, %s, %" PRIu64", %p, %d) [%s%s]",
 			fmt_analyzer(this).c_str(), len, is_orig ? "T" : "F", seq, ip, caplen,
 			fmt_bytes((const char*) data, min(40, len)), len > 40 ? "..." : "");
 	}
 
-void Analyzer::DeliverStream(int len, const u_char* data, bool is_orig)
+void LLAnalyzer::DeliverStream(int len, const u_char* data, bool is_orig)
 	{
 	DBG_LOG(DBG_ANALYZER, "%s DeliverStream(%d, %s) [%s%s]",
 			fmt_analyzer(this).c_str(), len, is_orig ? "T" : "F",
 			fmt_bytes((const char*) data, min(40, len)), len > 40 ? "..." : "");
 	}
 
-void Analyzer::Undelivered(uint64_t seq, int len, bool is_orig)
+void LLAnalyzer::Undelivered(uint64_t seq, int len, bool is_orig)
 	{
 	DBG_LOG(DBG_ANALYZER, "%s Undelivered(%" PRIu64", %d, %s)",
 			fmt_analyzer(this).c_str(), seq, len, is_orig ? "T" : "F");
 	}
 
-void Analyzer::EndOfData(bool is_orig)
+void LLAnalyzer::EndOfData(bool is_orig)
 	{
 	DBG_LOG(DBG_ANALYZER, "%s EndOfData(%s)",
 			fmt_analyzer(this).c_str(), is_orig ? "T" : "F");
 	}
 
-void Analyzer::FlipRoles()
+void LLAnalyzer::FlipRoles()
 	{
 	DBG_LOG(DBG_ANALYZER, "%s FlipRoles()", fmt_analyzer(this).c_str());
 
@@ -676,7 +676,7 @@ void Analyzer::FlipRoles()
 	resp_supporters = tmp;
 	}
 
-void Analyzer::ProtocolConfirmation(Tag arg_tag)
+void LLAnalyzer::ProtocolConfirmation(Tag arg_tag)
 	{
 	if ( protocol_confirmed )
 		return;
@@ -696,7 +696,7 @@ void Analyzer::ProtocolConfirmation(Tag arg_tag)
 	});
 	}
 
-void Analyzer::ProtocolViolation(const char* reason, const char* data, int len)
+void LLAnalyzer::ProtocolViolation(const char* reason, const char* data, int len)
 	{
 	if ( ! protocol_violation )
 		return;
@@ -725,8 +725,8 @@ void Analyzer::ProtocolViolation(const char* reason, const char* data, int len)
 	});
 	}
 
-void Analyzer::AddTimer(analyzer_timer_func timer, double t,
-			int do_expire, TimerType type)
+void LLAnalyzer::AddTimer(analyzer_timer_func timer, double t,
+                          int do_expire, TimerType type)
 	{
 	Timer* analyzer_timer = new
 		AnalyzerTimer(this, timer, t, do_expire, type);
@@ -735,12 +735,12 @@ void Analyzer::AddTimer(analyzer_timer_func timer, double t,
 	timers.push_back(analyzer_timer);
 	}
 
-void Analyzer::RemoveTimer(Timer* t)
+void LLAnalyzer::RemoveTimer(Timer* t)
 	{
 	timers.remove(t);
 	}
 
-void Analyzer::CancelTimers()
+void LLAnalyzer::CancelTimers()
 	{
 	// We are going to cancel our timers which, in turn, may cause them to
 	// call RemoveTimer(), which would then modify the list we're just
@@ -757,14 +757,14 @@ void Analyzer::CancelTimers()
 	timers.clear();
 	}
 
-void Analyzer::AppendNewChildren()
+void LLAnalyzer::AppendNewChildren()
 	{
 	LOOP_OVER_GIVEN_CHILDREN(i, new_children)
 		children.push_back(*i);
 	new_children.clear();
 	}
 
-unsigned int Analyzer::MemoryAllocation() const
+unsigned int LLAnalyzer::MemoryAllocation() const
 	{
 	unsigned int mem = padded_sizeof(*this)
 		+ (timers.MemoryAllocation() - padded_sizeof(timers));
@@ -781,43 +781,43 @@ unsigned int Analyzer::MemoryAllocation() const
 	return mem;
 	}
 
-void Analyzer::UpdateConnVal(RecordVal *conn_val)
+void LLAnalyzer::UpdateConnVal(RecordVal *conn_val)
 	{
 	LOOP_OVER_CHILDREN(i)
 		(*i)->UpdateConnVal(conn_val);
 	}
 
-RecordVal* Analyzer::BuildConnVal()
+RecordVal* LLAnalyzer::BuildConnVal()
 	{
 	return conn->BuildConnVal();
 	}
 
-void Analyzer::Event(EventHandlerPtr f, const char* name)
+void LLAnalyzer::Event(EventHandlerPtr f, const char* name)
 	{
 	conn->Event(f, this, name);
 	}
 
-void Analyzer::Event(EventHandlerPtr f, Val* v1, Val* v2)
+void LLAnalyzer::Event(EventHandlerPtr f, Val* v1, Val* v2)
 	{
 	conn->Event(f, this, v1, v2);
 	}
 
-void Analyzer::ConnectionEvent(EventHandlerPtr f, val_list* vl)
+void LLAnalyzer::ConnectionEvent(EventHandlerPtr f, val_list* vl)
 	{
 	conn->ConnectionEvent(f, this, vl);
 	}
 
-void Analyzer::ConnectionEvent(EventHandlerPtr f, val_list vl)
+void LLAnalyzer::ConnectionEvent(EventHandlerPtr f, val_list vl)
 	{
 	conn->ConnectionEvent(f, this, std::move(vl));
 	}
 
-void Analyzer::ConnectionEventFast(EventHandlerPtr f, val_list vl)
+void LLAnalyzer::ConnectionEventFast(EventHandlerPtr f, val_list vl)
 	{
 	conn->ConnectionEventFast(f, this, std::move(vl));
 	}
 
-void Analyzer::Weird(const char* name, const char* addl)
+void LLAnalyzer::Weird(const char* name, const char* addl)
 	{
 	conn->Weird(name, addl);
 	}
@@ -899,7 +899,7 @@ void SupportAnalyzer::ForwardUndelivered(uint64_t seq, int len, bool is_orig)
 
 void TransportLayerAnalyzer::Done()
 	{
-	Analyzer::Done();
+	LLAnalyzer::Done();
 	}
 
 void TransportLayerAnalyzer::SetContentsFile(unsigned int /* direction */,

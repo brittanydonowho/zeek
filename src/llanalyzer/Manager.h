@@ -1,10 +1,10 @@
 // See the file "COPYING" in the main distribution directory for copyright.
 
 /**
- * The central management unit for registering and instantiating analyzers.
+ * The central management unit for registering and instantiating low layer analyzers.
  *
- * For each protocol that Bro supports, there's one class derived from
- * analyzer::Analyzer. Once we have decided that a connection's payload is to
+ * For each low layer protocol that Bro supports, there's one class derived from
+ * llanalyzer::LLAnalyzer. Once we have decided that a connection's payload is to
  * be parsed as a given protocol, we instantiate the corresponding
  * analyzer-derived class and add the new instance as a child node into the
  * connection's analyzer tree.
@@ -24,7 +24,7 @@
 #include <queue>
 #include <vector>
 
-#include "Analyzer.h"
+#include "LLAnalyzer.h"
 #include "Component.h"
 #include "Tag.h"
 #include "plugin/ComponentManager.h"
@@ -35,7 +35,7 @@
 
 #include "analyzer/analyzer.bif.h"
 
-namespace analyzer {
+namespace llanalyzer {
 
 /**
  * Class maintaining and scheduling available protocol analyzers.
@@ -91,7 +91,7 @@ public:
 	 *
 	 * @return True if successful.
 	 */
-	bool EnableAnalyzer(Tag tag);
+	bool EnableAnalyzer(const Tag& tag);
 
 	/**
 	 * Enables an analyzer type. Only enabled analyzers will be
@@ -112,7 +112,7 @@ public:
 	 *
 	 * @return True if successful.
 	 */
-	bool DisableAnalyzer(Tag tag);
+	bool DisableAnalyzer(const Tag& tag);
 
 	/**
 	 * Disables an analyzer type. Disabled analyzers will not be
@@ -154,89 +154,26 @@ public:
 	bool IsEnabled(EnumVal* tag);
 
 	/**
-	 * Registers a well-known port for an analyzer. Once registered,
-	 * connection on that port will start with a corresponding analyzer
-	 * assigned.
-	 *
-	 * @param tag The analyzer's tag as an enum of script type \c
-	 * Analyzer::Tag.
-	 *
-	 * @param port The well-known port.
-	 *
-	 * @return True if successful.
-	 */
-	bool RegisterAnalyzerForPort(EnumVal* tag, PortVal* port);
-
-	/**
-	 * Registers a well-known port for an analyzer. Once registered,
-	 * connection on that port will start with a corresponding analyzer
-	 * assigned.
+	 * Instantiates a new analyzer instance.
 	 *
 	 * @param tag The analyzer's tag.
 	 *
-	 * @param proto The port's protocol.
-	 *
-	 * @param port The port's number.
-	 *
-	 * @return True if successful.
-	 */
-	bool RegisterAnalyzerForPort(Tag tag, TransportProto proto, uint32_t port);
-
-	/**
-	 * Unregisters a well-known port for an anlyzers.
-	 *
-	 * @param tag The analyzer's tag as an enum of script type \c
-	 * Analyzer::Tag.
-	 *
-	 * @param port The well-known port.
-	 *
-	 * @return True if successful (incl. when the port wasn't actually
-	 * registered for the analyzer).
-	 *
-	 */
-	bool UnregisterAnalyzerForPort(EnumVal* tag, PortVal* port);
-
-	/**
-	 * Unregisters a well-known port for an anlyzers.
-	 *
-	 * @param tag The analyzer's tag.
-	 *
-	 * @param proto The port's protocol.
-	 *
-	 * @param port The port's number.
-	 *
-	 * @param tag The analyzer's tag as an enum of script type \c
-	 * Analyzer::Tag.
-	 */
-	bool UnregisterAnalyzerForPort(Tag tag, TransportProto proto, uint32_t port);
-
-	/**
-	 * Instantiates a new analyzer instance for a connection.
-	 *
-	 * @param tag The analyzer's tag.
-	 *
-	 * @param conn The connection the analyzer is to be associated with.
-	 *
-	 * @return The new analyzer instance. Note that the analyzer will not
-	 * have been added to the connection's analyzer tree yet. Returns
+	 * @return The new analyzer instance. Returns
 	 * null if tag is invalid, the requested analyzer is disabled, or the
 	 * analyzer can't be instantiated.
 	 */
-	Analyzer* InstantiateAnalyzer(Tag tag, Connection* c);
+	LLAnalyzer* InstantiateAnalyzer(const Tag& tag);
 
 	/**
-	 * Instantiates a new analyzer instance for a connection.
+	 * Instantiates a new analyzer.
 	 *
 	 * @param name The name of the analyzer.
 	 *
-	 * @param conn The connection the analyzer is to be associated with.
-	 *
-	 * @return The new analyzer instance. Note that the analyzer will not
-	 * have been added to the connection's analyzer tree yet. Returns
+	 * @return The new analyzer instance. Returns
 	 * null if the name is not known or if the requested analyzer that is
 	 * disabled.
 	 */
-	Analyzer* InstantiateAnalyzer(const char* name, Connection* c);
+	LLAnalyzer* InstantiateAnalyzer(const char* name);
 
 	/**
 	 *
@@ -245,18 +182,13 @@ public:
 
 private:
 	typedef set<Tag> tag_set;
-	typedef map<uint32_t, tag_set*> analyzer_map_by_port;
+	typedef map<uint32_t, tag_set*> lla_map;
 
-	analyzer_map_by_port analyzers_by_port_tcp;
-	analyzer_map_by_port analyzers_by_port_udp;
-
-	Tag analyzer_connsize;
-	Tag analyzer_stepping;
-	Tag analyzer_tcpstats;
+	lla_map llanalyzer_map;
 };
 
 }
 
-extern analyzer::Manager* analyzer_mgr;
+extern llanalyzer::Manager* llanalyzer_mgr;
 
 #endif

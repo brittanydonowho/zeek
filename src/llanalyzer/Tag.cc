@@ -3,20 +3,17 @@
 #include "Tag.h"
 #include "Manager.h"
 
-analyzer::Tag analyzer::Tag::Error;
+llanalyzer::Tag llanalyzer::Tag::Error;
 
-analyzer::Tag::Tag(type_t type, subtype_t subtype)
-	: ::Tag(analyzer_mgr->GetTagEnumType(), type, subtype)
-	{
-	}
+llanalyzer::Tag::Tag(type_t type, subtype_t subtype)
+        : ::Tag(llanalyzer_mgr->GetTagEnumType(), type, subtype) {
+}
 
-analyzer::Tag& analyzer::Tag::operator=(const analyzer::Tag& other)
-	{
-	::Tag::operator=(other);
-	return *this;
-	}
+llanalyzer::Tag &llanalyzer::Tag::operator=(const llanalyzer::Tag &other) {
+    ::Tag::operator=(other);
+    return *this;
+}
 
-EnumVal* analyzer::Tag::AsEnumVal() const
-	{
-	return ::Tag::AsEnumVal(analyzer_mgr->GetTagEnumType());
-	}
+EnumVal* analyzer::Tag::AsEnumVal() const {
+    return ::Tag::AsEnumVal(llanalyzer_mgr->GetTagEnumType());
+}

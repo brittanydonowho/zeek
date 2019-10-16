@@ -9,7 +9,7 @@ include_directories(BEFORE
 add_subdirectory(protocol)
 
 set(llanalyzer_SRCS
-    Analyzer.cc
+    LLAnalyzer.cc
     Manager.cc
     Component.cc
     Tag.cc
