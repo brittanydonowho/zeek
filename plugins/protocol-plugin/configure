@@ -57,7 +57,7 @@ append_cache_entry () {
 }
 
 # set defaults
-builddir=cmake-build-debug
+builddir=build
 zeekdist=""
 installroot="default"
 CMakeCacheEntries=""
