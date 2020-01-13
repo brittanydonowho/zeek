@@ -15,22 +15,22 @@ uint32_t IP6::getIdentifier(Packet* packet) {
 
     // Find the first identifier that is not an extension header
     // Check if the first following protocol is an extension header
-    if (std::find(extensionHeaders.begin(), extensionHeaders.end(), ip6_header->ip6_nxt) != extensionHeaders.end()) {
+    if (isExtensionHeader(ip6_header->ip6_nxt)) {
         // Goto next extension header until either NoNxt (59) or a non-extension-header
         const struct ip6_ext* ext_header = nullptr;
         do {
             ext_header = reinterpret_cast<const struct ip6_ext*>(cur_pos);
 
-            if (ext_header->ip6e_nxt == 59) {
+            if (ext_header->ip6e_nxt == IPPROTO_NONE) {
                 // No next header --> notify that there are no more identifiers to extract
                 return -1;
             }
 
             // Set pointer to next extension header start
             cur_pos += ((ext_header->ip6e_len + 1) * 8); // len field is a multiple of 8 byte starting at 0, 0 = 8 bytes, 1 = 16 bytes ...
-        } while(std::find(extensionHeaders.begin(), extensionHeaders.end(), ext_header->ip6e_nxt) != extensionHeaders.end());
+        } while(isExtensionHeader(ext_header->ip6e_nxt));
 
-        // Save cur_pos for analyze
+        // Save cur_pos (currently pointing to the start of the encaspulated PDU for analyze
         savedCurPos = cur_pos;
 
         // Found a "real" next header identifier

@@ -149,7 +149,6 @@ public:
 	void processPacket(uint8_t* packetStartPointer);
 
 private:
-    configset configuration;
     AnalyzerSet* analyzerSet;
 };
 

@@ -1,6 +1,8 @@
 // See the file "COPYING" in the main distribution directory for copyright.
 
 #include <list>
+
+#include "Config.h"
 #include "Manager.h"
 #include "ProtocolAnalyzerSet.h"
 
@@ -24,28 +26,16 @@ void Manager::InitPostScript() {
     // TODO: just a mockup now, do for real
 
     // Configuration Mockup
-    configuration = {
-        {"ROOT", {
-            {0x1, "ETHERNET"},
-        }},
-        {"ETHERNET", {
-            {0x800, "IP4"},
-            {0x86DD, "IP6"},
-            {0x806, "ARP"},
-            {0x8864, "PPPOE"},
-        }},
-        {"ARP", {}},
-        {"PPPOE", {
-            {0x21, "IP4"},
-            {0x57, "IP6"},
-        }},
-        {"IP4", {
-            {0x1, "ICMP"},
-        }},
-        {"IP6", {
-            {0x3A, "ICMP6"},
-        }},
-    };
+    Config configuration;
+    configuration.addMapping("ROOT", 0x1, "ETHERNET");
+    configuration.addMapping("ETHERNET", 0x800, "IP4");
+    configuration.addMapping("ETHERNET", 0x86DD, "IP6");
+    configuration.addMapping("ETHERNET", 0x806, "ARP");
+    configuration.addMapping("ETHERNET", 0x8864, "PPPOE");
+    configuration.addMapping("PPPOE", 0x21, "IP4");
+    configuration.addMapping("PPPOE", 0x57, "IP6");
+    configuration.addMapping("IP4", 0x1, "ICMP");
+    configuration.addMapping("IP6", 0x3A, "ICMP6");
 
     analyzerSet = new ProtocolAnalyzerSet(configuration);
 }

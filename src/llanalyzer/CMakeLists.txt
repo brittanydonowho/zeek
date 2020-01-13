@@ -6,12 +6,16 @@ include_directories(BEFORE
                     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
+file(GLOB_RECURSE disp_SRCS dispatchers/*.cc)
+
 set(llanalyzer_SRCS
     Analyzer.cc
     ProtocolAnalyzerSet.cc
     Manager.cc
     Component.cc
     Tag.cc
+    Config.cc
+    ${disp_SRCS}
 )
 
 bro_add_subdir_library(llanalyzer ${llanalyzer_SRCS})

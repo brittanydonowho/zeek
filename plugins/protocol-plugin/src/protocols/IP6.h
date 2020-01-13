@@ -18,11 +18,22 @@ public:
     }
 
 private:
-    static constexpr std::array<uint8_t, 9> extensionHeaders = {0, 43, 44, 50, 51, 60, 135, 139, 140};
-
     const struct ip6_hdr* ip6_header;
     const uint8_t* savedCurPos;
     Packet* currentPacket;
+
+    inline bool isExtensionHeader(uint8_t nxt_hdr) {
+        switch (nxt_hdr) {
+            case IPPROTO_HOPOPTS:
+            case IPPROTO_DSTOPTS:
+            case IPPROTO_ROUTING:
+            case IPPROTO_FRAGMENT:
+            case IPPROTO_AH:
+                return true;
+            default:
+                return false;
+        }
+    }
 };
 
 } // end of namespace plugin::Demo_Foo
