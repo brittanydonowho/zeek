@@ -2,42 +2,64 @@
 
 #include <list>
 #include "Manager.h"
-
-#include "Hash.h"
-#include "Val.h"
+#include "ProtocolAnalyzerSet.h"
 
 #include "plugin/Manager.h"
 
 using namespace llanalyzer;
 
 Manager::Manager()
-        : plugin::ComponentManager<analyzer::Tag, analyzer::Component>("LLAnalyzer", "Tag") {
+        : plugin::ComponentManager<llanalyzer::Tag, llanalyzer::Component>("LLAnalyzer", "Tag") {
 }
 
 Manager::~Manager() {
-    // TODO implement
+    delete analyzerSet;
 }
 
 void Manager::InitPreScript() {
-    // TODO Implement
 }
 
 void Manager::InitPostScript() {
-    // TODO Implement
+    // Read in configuration
+    // TODO: just a mockup now, do for real
+
+    // Configuration Mockup
+    configuration = {
+        {"ROOT", {
+            {0x1, "ETHERNET"},
+        }},
+        {"ETHERNET", {
+            {0x800, "IP4"},
+            {0x86DD, "IP6"},
+            {0x806, "ARP"},
+            {0x8864, "PPPOE"},
+        }},
+        {"ARP", {}},
+        {"PPPOE", {
+            {0x21, "IP4"},
+            {0x57, "IP6"},
+        }},
+        {"IP4", {
+            {0x1, "ICMP"},
+        }},
+        {"IP6", {
+            {0x3A, "ICMP6"},
+        }},
+    };
+
+    analyzerSet = new ProtocolAnalyzerSet(configuration);
+}
+
+void Manager::Done() {
 }
 
 void Manager::DumpDebug() {
 #ifdef DEBUG
-    DBG_LOG(DBG_LLPOC, "Available analyzers after zeek_init():");
-    list<Component *> all_analyzers = GetComponents();
-    for (list<Component *>::const_iterator i = all_analyzers.begin(); i != all_analyzers.end(); ++i) {
-        DBG_LOG(DBG_LLPOC, "    %s (%s)", (*i)->Name().c_str(), IsEnabled((*i)->Tag()) ? "enabled" : "disabled");
+    DBG_LOG(DBG_LLPOC, "Available llanalyzers after zeek_init():");
+    for (auto& current : GetComponents()) {
+        DBG_LOG(DBG_LLPOC, "    %s (%s)", current->Name().c_str(), IsEnabled(current->Tag()) ? "enabled" : "disabled");
     }
-
 #endif
-}
-
-void Manager::Done() {
 }
 
 bool Manager::EnableAnalyzer(const Tag& tag) {
@@ -121,17 +143,41 @@ bool Manager::IsEnabled(EnumVal *val) {
     return p->Enabled();
 }
 
-LLAnalyzer* Manager::InstantiateAnalyzer(const Tag& tag) {
-    // TODO Implement
-    return nullptr;
+Analyzer* Manager::InstantiateAnalyzer(const Tag& tag) {
+    Component* c = Lookup(tag);
+
+    if (!c) {
+        reporter->InternalWarning("request to instantiate unknown llanalyzer");
+        return nullptr;
+    }
+
+    if (!c->Enabled()) return nullptr;
+
+    if (!c->Factory()) {
+        reporter->InternalWarning("analyzer %s cannot be instantiated dynamically", GetComponentName(tag).c_str());
+        return nullptr;
+    }
+
+    Analyzer* a = c->Factory()();
+
+    if (!a) {
+        reporter->InternalWarning("analyzer instantiation failed");
+        return nullptr;
+    }
+
+    if (tag != a->GetAnalyzerTag()) {
+        reporter->InternalError("Mismatch of requested analyzer %s and instantiated analyzer %s. This usually means that the plugin author made a mistake.",
+                GetComponentName(tag).c_str(), GetComponentName(a->GetAnalyzerTag()).c_str());
+        return nullptr;
+    }
+
+    return a;
 }
 
-LLAnalyzer* Manager::InstantiateAnalyzer(const char *name) {
+Analyzer* Manager::InstantiateAnalyzer(const std::string& name) {
     Tag tag = GetComponentTag(name);
     return tag ? InstantiateAnalyzer(tag) : nullptr;
 }
 
-bool Manager::BuildAnalyzerTree() {
-    // TODO Implement: Create the tree like it was read from the config file.
-    return false;
+void Manager::processPacket(uint8_t *packetStartPointer) {
 }

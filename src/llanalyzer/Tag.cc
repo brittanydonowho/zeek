@@ -14,6 +14,6 @@ llanalyzer::Tag &llanalyzer::Tag::operator=(const llanalyzer::Tag &other) {
     return *this;
 }
 
-EnumVal* analyzer::Tag::AsEnumVal() const {
+EnumVal* llanalyzer::Tag::AsEnumVal() const {
     return ::Tag::AsEnumVal(llanalyzer_mgr->GetTagEnumType());
 }

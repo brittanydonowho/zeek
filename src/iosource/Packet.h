@@ -157,6 +157,7 @@ public:
 	uint32_t len;			/// Actual length on wire
 	uint32_t cap_len;			/// Captured packet length
 	uint32_t link_type;		/// pcap link_type (DLT_EN10MB, DLT_RAW, etc)
+    const uint8_t* cur_pos; /// Current pointer to the start of unanalyzed data in the raw packet data, used by llanalyzers
 
 	// These are computed from Layer 2 data. These fields are only valid if
 	// Layer2Valid() returns true.

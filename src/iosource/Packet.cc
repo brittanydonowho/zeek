@@ -31,6 +31,8 @@ void Packet::Init(int arg_link_type, pkt_timeval *arg_ts, uint32_t arg_caplen,
 	len = arg_len;
 	tag = std::move(arg_tag);
 
+	cur_pos = data; // for llanalyzer
+
 	copy = arg_copy;
 
 	if ( arg_data && arg_copy )

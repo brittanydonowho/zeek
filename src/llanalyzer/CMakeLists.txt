@@ -6,10 +6,9 @@ include_directories(BEFORE
                     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-add_subdirectory(protocol)
-
 set(llanalyzer_SRCS
-    LLAnalyzer.cc
+    Analyzer.cc
+    ProtocolAnalyzerSet.cc
     Manager.cc
     Component.cc
     Tag.cc
