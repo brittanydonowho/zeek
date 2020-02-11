@@ -15,12 +15,11 @@ bool UnorderedMapDispatcher::Register(identifier_t identifier, Analyzer* analyze
 
     // If there is a bucket collision, rehash
     while (containsBucketCollision()) {
-        table.rehash(table.bucket_count() + REHASH_BUCKET_INCREASE);
+        table.rehash(table.bucket_count() + 100);
     }
 
     return true;
 }
-
 
 void UnorderedMapDispatcher::Register(const register_map& data) {
     for (auto &current : data) {
@@ -33,7 +32,7 @@ void UnorderedMapDispatcher::Register(const register_map& data) {
 
     // If there is a bucket collision, rehash
     while (containsBucketCollision()) {
-        table.rehash(table.bucket_count() + REHASH_BUCKET_INCREASE);
+        table.rehash(table.bucket_count() + 100);
     }
 }
 
@@ -62,10 +61,11 @@ void UnorderedMapDispatcher::_clear() {
 
 void UnorderedMapDispatcher::DumpDebug() const {
 #ifdef DEBUG
+    std::cout << "TABLE USAGE: " << table.size() << "/" << table.bucket_count() << std::endl;
     for (const auto& current : table) {
         DBG_LOG(DBG_LLPOC, "    %#8x => %s, %p", current.first, current.second->analyzer->GetAnalyzerName(), current.second->dispatcher);
     }
 #endif
-    }
+}
 
 }

@@ -186,13 +186,13 @@ void Ethernet::analyze(Packet* packet) {
     packet->l2_src = packet->cur_pos + 6;
 
     // Zeek adapter code: Set l3_proto accordingly
-    if (protocol == 0x800) {
-        packet->l3_proto = L3_IPV4;
-    } else if (protocol == 0x86dd) {
-        packet->l3_proto = L3_IPV6;
-    } else if (protocol == 0x0806 || protocol == 0x8035) {
-        packet->l3_proto = L3_ARP;
-    }
+//    if (protocol == 0x800) {
+//        packet->l3_proto = L3_IPV4;
+//    } else if (protocol == 0x86dd) {
+//        packet->l3_proto = L3_IPV6;
+//    } else if (protocol == 0x0806 || protocol == 0x8035) {
+//        packet->l3_proto = L3_ARP;
+//    }
 
     // Move position to next header
     packet->cur_pos += 14;

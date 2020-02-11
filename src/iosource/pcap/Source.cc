@@ -16,7 +16,6 @@
 
 // FOR LLPOC: include llanalyzer manager to call packet loop
 #include "llanalyzer/Manager.h"
-#include "llanalyzer/Timing.h"
 
 using namespace iosource::pcap;
 
@@ -198,6 +197,8 @@ void PcapSource::OpenOffline()
 
 bool PcapSource::ExtractNextPacket(Packet* pkt)
 	{
+	static size_t time_taken = 0;
+
 	if ( ! pd )
 		return false;
 
@@ -211,28 +212,25 @@ bool PcapSource::ExtractNextPacket(Packet* pkt)
 		if ( ! props.is_live )
 			Close();
 
+		std::cout << time_taken << std::endl;
 		return false;
 		}
 
 	last_data = data;
 
 	// Original Zeek L2 extraction
-    pkt->Init(props.link_type, &current_hdr.ts, current_hdr.caplen, current_hdr.len, data);
+//    pkt->Init(props.link_type, &current_hdr.ts, current_hdr.caplen, current_hdr.len, data);
 
 	// LLPOC L2 extraction
-//	pkt->InitLLPOC(props.link_type, &current_hdr.ts, current_hdr.caplen, current_hdr.len, data);
-//	llanalyzer_mgr->processPacket(pkt);
+	pkt->InitLLPOC(props.link_type, &current_hdr.ts, current_hdr.caplen, current_hdr.len, data);
+	llanalyzer_mgr->processPacket(pkt);
 
 	// FOR LLPOC: Create another packet, run it through the packet loop
-	Packet packet;
-	packet.InitLLPOC(props.link_type, &current_hdr.ts, current_hdr.caplen, current_hdr.len, data);
-	Timing::startTM("LLPOC");
-	llanalyzer_mgr->processPacket(&packet);
-	Timing::endTM("LLPOC");
-
-//    if (std::abs(pkt->time - 1578658720.674743000) < 1E4) {
-//        int x = 0;
-//    }
+//	Packet packet;
+//	packet.InitLLPOC(props.link_type, &current_hdr.ts, current_hdr.caplen, current_hdr.len, data);
+//	auto start = std::chrono::high_resolution_clock::now();
+//	llanalyzer_mgr->processPacket(&packet);
+//    time_taken += std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now() - start).count();
 
 	if ( current_hdr.len == 0 || current_hdr.caplen == 0 )
 		{

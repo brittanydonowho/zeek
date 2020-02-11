@@ -4,8 +4,6 @@
 
 #include <unordered_map>
 
-#define REHASH_BUCKET_INCREASE 100
-
 namespace llanalyzer {
 
 class UnorderedMapDispatcher : public Dispatcher {

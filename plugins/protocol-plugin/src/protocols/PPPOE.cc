@@ -15,11 +15,11 @@ uint32_t PPPOE::getIdentifier(Packet* packet) {
 
 void PPPOE::analyze(Packet* packet) {
     // Zeek adapter code: Set l3_proto accordingly
-    if (protocol == 0x0021) {
-        packet->l3_proto = L3_IPV4;
-    } else if (protocol == 0x0057) {
-        packet->l3_proto = L3_IPV6;
-    }
+//    if (protocol == 0x0021) {
+//        packet->l3_proto = L3_IPV4;
+//    } else if (protocol == 0x0057) {
+//        packet->l3_proto = L3_IPV6;
+//    }
 
     // Set header position to next header (skip over PPPOE Session + PPP)
     packet->cur_pos = packet->cur_pos + 8;

@@ -7,7 +7,6 @@
 #include "ProtocolAnalyzerSet.h"
 
 #include "plugin/Manager.h"
-#include "Timing.h"
 
 using namespace llanalyzer;
 
@@ -30,14 +29,14 @@ void Manager::InitPostScript() {
     // Configuration Mockup
     Config configuration;
     configuration.addMapping("ROOT", 0x1, "ETHERNET");
-    configuration.addMapping("ETHERNET", 0x800, "IP4");
-    configuration.addMapping("ETHERNET", 0x86DD, "IP6");
-    configuration.addMapping("ETHERNET", 0x806, "ARP");
-    configuration.addMapping("ETHERNET", 0x8864, "PPPOE");
-    configuration.addMapping("PPPOE", 0x21, "IP4");
-    configuration.addMapping("PPPOE", 0x57, "IP6");
-    configuration.addMapping("IP4", 0x1, "ICMP");
-    configuration.addMapping("IP6", 0x3A, "ICMP6");
+//    configuration.addMapping("ETHERNET", 0x800, "IP4");
+//    configuration.addMapping("ETHERNET", 0x86DD, "IP6");
+//    configuration.addMapping("ETHERNET", 0x806, "ARP");
+//    configuration.addMapping("ETHERNET", 0x8864, "PPPOE");
+//    configuration.addMapping("PPPOE", 0x21, "IP4");
+//    configuration.addMapping("PPPOE", 0x57, "IP6");
+//    configuration.addMapping("IP4", 0x1, "ICMP");
+//    configuration.addMapping("IP6", 0x3A, "ICMP6");
 
     analyzerSet = new ProtocolAnalyzerSet(configuration);
 }
@@ -179,7 +178,6 @@ void Manager::processPacket(Packet* packet) {
     static size_t counter = 0;
     DBG_LOG(DBG_LLPOC, "Analyzing packet %ld, ts=%.3f...", ++counter, packet->time);
 #endif
-
     // Dispatch and analyze layers unitl getIdentifier returns -1 --> end of packet reached
     identifier_t nextLayerID = packet->link_type;
     do {

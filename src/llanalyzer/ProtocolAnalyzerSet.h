@@ -5,6 +5,8 @@
 #include "dispatchers/Dispatcher.h"
 #include "dispatchers/VectorDispatcher.h"
 #include "dispatchers/UnorderedMapDispatcher.h"
+#include "dispatchers/UniversalDispatcher.h"
+#include "dispatchers/TreeMapDispatcher.h"
 
 namespace llanalyzer {
 
@@ -20,8 +22,9 @@ protected:
     void DumpDebug() const override;
 
 private:
-//    using dispatcher_impl = UnorderedMapDispatcher;
-    using dispatcher_impl = VectorDispatcher;
+    using dispatcher_impl = UnorderedMapDispatcher;
+//    using dispatcher_impl = VectorDispatcher;
+//    using dispatcher_impl = UniversalDispatcher;
 
     std::map<std::string, Analyzer*> analyzers;
     std::map<std::string, Dispatcher*> dispatchers;
