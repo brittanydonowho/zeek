@@ -113,7 +113,7 @@ void UniversalDispatcher::rehash() {
 
 void UniversalDispatcher::DumpDebug() const {
 #ifdef DEBUG
-    std::cout << "TABLE SIZE: " << table.size() << std::endl;
+    DBG_LOG(DBG_LLPOC, "  Dispatcher elements (used/total): %lu/%lu", size(), table.size());
     for (size_t i = 0; i < table.size(); i++) {
         if (table[i].second != nullptr) {
             DBG_LOG(DBG_LLPOC, "    %#8x => %s, %p", table[i].first, table[i].second->analyzer->GetAnalyzerName(), table[i].second->dispatcher);
@@ -135,10 +135,7 @@ void UniversalDispatcher::freeValues() {
 
 void UniversalDispatcher::rehash(const std::vector<pair_t>& intermediate) {
     while (!findCollisionFreeHashFunction(intermediate)) {
-        #if DEBUG > 0
-        std::cout << "Rehashing did not work. Increasing #bins to " << (uint64_t) std::pow(2, M + 1) << " (" << M + 1 << "bit)." << std::endl;
-        #endif
-
+        DBG_LOG(DBG_LLPOC, "Rehashing did not work. Increasing #bins to %lu (%lu bit).", (uint64_t) std::pow(2, M + 1), M + 1);
         setBins(M + 1);
     }
 }
@@ -174,22 +171,13 @@ bool UniversalDispatcher::findCollisionFreeHashFunction(const std::vector<pair_t
                 // The bin is not empty which means there is a collision
                 // (there are no duplicates in the intermediate representation so that can't be the case)
                 finished = false;
-                #if DEBUG > 0
-                static bool flag;
-                if (flag && i % 100 == 0) {
-                    std::cout << "Collision of " << current.first << " and " << newTable[hashedID].first
-                              << " - hashcode is " << hashedID << "." << std::endl;
-                }
-                #endif
                 break;
             }
         }
 
         // Step 4: If the inserting finished without collisions, overwrite the previous table and exit
         if (finished) {
-            #if DEBUG > 0
-            std::cout << "Took " << i << " rehash(es) to resolve." << std::endl;
-            #endif
+            DBG_LOG(DBG_LLPOC, "Took %lu rehash(es) to resolve.", i);
             table = newTable;
             return true;
         }

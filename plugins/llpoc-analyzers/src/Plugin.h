@@ -4,8 +4,7 @@
 
 #include <plugin/Plugin.h>
 
-namespace plugin {
-namespace Demo_Foo {
+namespace plugin::LLPOC {
 
 class Plugin : public ::plugin::Plugin
 {
@@ -16,7 +15,6 @@ protected:
 
 extern Plugin plugin;
 
-}
 }
 
 #endif

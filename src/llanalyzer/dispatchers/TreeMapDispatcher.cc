@@ -36,7 +36,7 @@ void TreeMapDispatcher::freeValues() {
 
 void TreeMapDispatcher::DumpDebug() const {
 #ifdef DEBUG
-    std::cout << "TABLE SIZE: " << table.size() << std::endl;
+    DBG_LOG(DBG_LLPOC, "  Dispatcher elements (used/total): %lu/%lu", size(), table.size());
     for (const auto &current : table) {
         DBG_LOG(DBG_LLPOC, "    %#8x => %s, %p", current.first, current.second->analyzer->GetAnalyzerName(), current.second->dispatcher);
     }

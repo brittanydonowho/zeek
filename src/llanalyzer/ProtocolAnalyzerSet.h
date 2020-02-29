@@ -22,9 +22,9 @@ protected:
     void DumpDebug() const override;
 
 private:
-    using dispatcher_impl = UnorderedMapDispatcher;
+//    using dispatcher_impl = UnorderedMapDispatcher;
 //    using dispatcher_impl = VectorDispatcher;
-//    using dispatcher_impl = UniversalDispatcher;
+    using dispatcher_impl = UniversalDispatcher;
 
     std::map<std::string, Analyzer*> analyzers;
     std::map<std::string, Dispatcher*> dispatchers;

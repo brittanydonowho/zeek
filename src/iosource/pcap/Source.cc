@@ -197,8 +197,6 @@ void PcapSource::OpenOffline()
 
 bool PcapSource::ExtractNextPacket(Packet* pkt)
 	{
-	static size_t time_taken = 0;
-
 	if ( ! pd )
 		return false;
 
@@ -212,7 +210,6 @@ bool PcapSource::ExtractNextPacket(Packet* pkt)
 		if ( ! props.is_live )
 			Close();
 
-		std::cout << time_taken << std::endl;
 		return false;
 		}
 

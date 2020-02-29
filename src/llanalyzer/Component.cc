@@ -2,6 +2,7 @@
 
 #include "Component.h"
 #include "Manager.h"
+#include "Desc.h"
 
 using namespace llanalyzer;
 

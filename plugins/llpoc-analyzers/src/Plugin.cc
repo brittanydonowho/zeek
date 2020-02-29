@@ -9,7 +9,7 @@
 #include "protocols/ICMP.h"
 #include "protocols/ICMP6.h"
 
-namespace plugin::Demo_Foo {
+namespace plugin::LLPOC {
 
 Plugin plugin;
 
@@ -23,7 +23,7 @@ plugin::Configuration Plugin::Configure() {
     AddComponent(new ::llanalyzer::Component("ICMP6", plugin::Demo_Foo::ICMP6::Instantiate));
 
     plugin::Configuration config;
-    config.name = "Demo::Foo";
+    config.name = "LLPOC::Analyzers";
     config.description = "A set of lower layer analyzers.";
     config.version.major = 1;
     config.version.minor = 0;

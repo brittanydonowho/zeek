@@ -61,7 +61,7 @@ void UnorderedMapDispatcher::_clear() {
 
 void UnorderedMapDispatcher::DumpDebug() const {
 #ifdef DEBUG
-    std::cout << "TABLE USAGE: " << table.size() << "/" << table.bucket_count() << std::endl;
+    DBG_LOG(DBG_LLPOC, "  Dispatcher elements (used/total): %lu/%lu", size(), table.bucket_count());
     for (const auto& current : table) {
         DBG_LOG(DBG_LLPOC, "    %#8x => %s, %p", current.first, current.second->analyzer->GetAnalyzerName(), current.second->dispatcher);
     }

@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "VectorDispatcher.h"
 
 namespace llanalyzer {
@@ -96,7 +98,8 @@ void VectorDispatcher::freeValues() {
 
 void VectorDispatcher::DumpDebug() const {
 #ifdef DEBUG
-    std::cout << "TABLE SIZE: " << table.size() << std::endl;
+    DBG_LOG(DBG_LLPOC, "  Dispatcher elements (used/total): %lu/%lu", size(), table.size());
+    DBG_LOG(DBG_LLPOC, "TABLE SIZE %lu", table.size());
     for (size_t i = 0; i < table.size(); i++) {
         if (table[i] != nullptr) {
             DBG_LOG(DBG_LLPOC, "    %#8lx => %s, %p", i, table[i]->analyzer->GetAnalyzerName(), table[i]->dispatcher);
