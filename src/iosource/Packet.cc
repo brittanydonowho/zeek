@@ -58,7 +58,7 @@ void Packet::Init(int arg_link_type, pkt_timeval *arg_ts, uint32_t arg_caplen,
 	l3_proto = L3_UNKNOWN;
 	l3_checksummed = false;
 
-	// for llanalyzer: l2 analyzer has to set valid flag, cur_pos points to the next payload
+	// for llanalyzer: cur_pos points to the next payload
 	cur_pos = data;
 
 	if ( data && cap_len < hdr_size )
@@ -67,8 +67,9 @@ void Packet::Init(int arg_link_type, pkt_timeval *arg_ts, uint32_t arg_caplen,
 		return;
 		}
 
-	if (data)
-		llanalyzer_mgr->processPacket(this);
+	if ( data )
+		l2_valid = true;
+	llanalyzer_mgr->processPacket(this);
 	}
 
 const IP_Hdr Packet::IP() const

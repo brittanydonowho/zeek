@@ -29,14 +29,14 @@ void Manager::InitPostScript() {
     // Configuration Mockup
     Config configuration;
     configuration.addMapping("ROOT", 0x1, "ETHERNET");
-    configuration.addMapping("ETHERNET", 0x800, "IP4");
-    configuration.addMapping("ETHERNET", 0x86DD, "IP6");
-    configuration.addMapping("ETHERNET", 0x806, "ARP");
-    configuration.addMapping("ETHERNET", 0x8864, "PPPOE");
-    configuration.addMapping("PPPOE", 0x21, "IP4");
-    configuration.addMapping("PPPOE", 0x57, "IP6");
-    configuration.addMapping("IP4", 0x1, "ICMP");
-    configuration.addMapping("IP6", 0x3A, "ICMP6");
+//    configuration.addMapping("ETHERNET", 0x800, "IP4");
+//    configuration.addMapping("ETHERNET", 0x86DD, "IP6");
+//    configuration.addMapping("ETHERNET", 0x806, "ARP");
+//    configuration.addMapping("ETHERNET", 0x8864, "PPPOE");
+//    configuration.addMapping("PPPOE", 0x21, "IP4");
+//    configuration.addMapping("PPPOE", 0x57, "IP6");
+//    configuration.addMapping("IP4", 0x1, "ICMP");
+//    configuration.addMapping("IP6", 0x3A, "ICMP6");
 
     analyzerSet = new ProtocolAnalyzerSet(configuration);
 }
