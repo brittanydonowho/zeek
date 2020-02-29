@@ -109,20 +109,6 @@ public:
 		std::string tag = std::string(""));
 
 	/**
-	 * Same as above, but without calling ProcessLayer2.
-	 * @param link_type
-	 * @param ts
-	 * @param caplen
-	 * @param len
-	 * @param data
-	 * @param copy
-	 * @param tag
-	 */
-	void InitLLPOC(int link_type, pkt_timeval *ts, uint32_t caplen,
-			  uint32_t len, const u_char *data, int copy = false,
-			  std::string tag = std::string(""));
-
-	/**
 	 * Returns true if parsing the layer 2 fields failed, including when
 	 * no data was passed into the constructor in the first place.
 	 */
@@ -176,7 +162,7 @@ public:
 	uint32_t len;			/// Actual length on wire
 	uint32_t cap_len;			/// Captured packet length
 	uint32_t link_type;		/// pcap link_type (DLT_EN10MB, DLT_RAW, etc)
-    const uint8_t* cur_pos; /// Current pointer to the start of unanalyzed data in the raw packet data, used by llanalyzers
+    const uint8_t* cur_pos; /// Current pointer to the start of unanalyzed payload data in the raw packet, used by llanalyzers
 
 	// These are computed from Layer 2 data. These fields are only valid if
 	// Layer2Valid() returns true.

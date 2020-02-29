@@ -4,6 +4,9 @@
 #include "IP.h"
 #include "iosource/Manager.h"
 
+// FOR LLPOC: include llanalyzer manager to call packet loop
+#include "llanalyzer/Manager.h"
+
 extern "C" {
 #include <pcap.h>
 #ifdef HAVE_NET_ETHERNET_H
@@ -55,6 +58,9 @@ void Packet::Init(int arg_link_type, pkt_timeval *arg_ts, uint32_t arg_caplen,
 	l3_proto = L3_UNKNOWN;
 	l3_checksummed = false;
 
+	// for llanalyzer: l2 analyzer has to set valid flag, cur_pos points to the next payload
+	cur_pos = data;
+
 	if ( data && cap_len < hdr_size )
 		{
 		Weird("truncated_link_header");
@@ -62,58 +68,13 @@ void Packet::Init(int arg_link_type, pkt_timeval *arg_ts, uint32_t arg_caplen,
 		}
 
 	if (data)
-        ProcessLayer2();
+		llanalyzer_mgr->processPacket(this);
 	}
 
 const IP_Hdr Packet::IP() const
 	{
 	return IP_Hdr((struct ip *) (data + hdr_size), false);
 	}
-
-void Packet::InitLLPOC(int arg_link_type, pkt_timeval *arg_ts, uint32_t arg_caplen,
-                  uint32_t arg_len, const u_char *arg_data, int arg_copy,
-                  std::string arg_tag)
-{
-    if ( data && copy )
-        delete [] data;
-
-    link_type = arg_link_type;
-    ts = *arg_ts;
-    cap_len = arg_caplen;
-    len = arg_len;
-    tag = arg_tag;
-
-    copy = arg_copy;
-
-    if ( arg_data && arg_copy )
-    {
-        data = new u_char[arg_caplen];
-        memcpy(const_cast<u_char *>(data), arg_data, arg_caplen);
-    }
-    else
-        data = arg_data;
-
-    time = ts.tv_sec + double(ts.tv_usec) / 1e6;
-    hdr_size = GetLinkHeaderSize(arg_link_type);
-    l3_proto = L3_UNKNOWN;
-    eth_type = 0;
-    vlan = 0;
-    inner_vlan = 0;
-    l2_src = 0;
-    l2_dst = 0;
-
-    // Assume true, workaround for private member
-    l2_valid = true;
-
-    if ( data && cap_len < hdr_size )
-    {
-        Weird("truncated_link_header");
-        return;
-    }
-
-    // for llanalyzer
-    cur_pos = data;
-}
 
 void Packet::Weird(const char* name)
 	{
@@ -164,16 +125,7 @@ int Packet::GetLinkHeaderSize(int link_type)
 
 void Packet::ProcessLayer2()
 	{
-//    DBG_LOG(DBG_LLPOC, "[LAYER 2] Next packet with ts=%f has link type %d", time, link_type);
-//    for (size_t i = 0; i < len; i++) {
-//        if (data[i] > 33 && data[i] < 127) {
-//            printf("\033[0;32m %c \033[0m", data[i]);
-//        } else {
-//            printf("%02x ", data[i]);
-//        }
-//    }
-//    puts("\n");
-    l2_valid = true;
+	l2_valid = true;
 
 	// Unfortunately some packets on the link might have MPLS labels
 	// while others don't. That means we need to ask the link-layer if
@@ -548,10 +500,6 @@ void Packet::ProcessLayer2()
 
 	default:
 		{
-        // LLPOC
-        // If this is executed, our measurement is fucked
-        abort();
-
 		// Assume we're pointing at IP. Just figure out which version.
 		pdata += GetLinkHeaderSize(link_type);
 		if ( pdata + sizeof(struct ip) >= end_of_data )

@@ -242,7 +242,7 @@ bool Manager::ActivateDynamicPluginInternal(const std::string& name, bool ok_if_
 			current_plugin = nullptr;
 			current_dir = dir.c_str();
 			current_sopath = path;
-            void* hdl = dlopen(path, RTLD_LAZY | RTLD_GLOBAL);
+			void* hdl = dlopen(path, RTLD_LAZY | RTLD_GLOBAL);
 
 			if ( ! hdl )
 				{
