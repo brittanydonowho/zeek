@@ -13,4 +13,6 @@ uint32_t ICMP6::getIdentifier(Packet* packet) {
 }
 
 void ICMP6::analyze(Packet* packet) {
+    // Do nothing for now
+    DBG_LOG(DBG_LLPOC, "Found ICMP6 layer!");
 }

@@ -9,11 +9,13 @@ class Analyzer;
 class AnalyzerSet {
 public:
     virtual ~AnalyzerSet() = default;
-    virtual const Analyzer* dispatch(identifier_t identifier) const = 0;
+    virtual Analyzer* dispatch(identifier_t identifier) = 0;
     virtual void reset() = 0;
 
 protected:
     friend class Manager;
+
+    virtual void DumpDebug() const = 0;
 };
 
 } // end of llanalyzer namespace

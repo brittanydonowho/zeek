@@ -1,8 +1,6 @@
 #include "Config.h"
 #include "Reporter.h"
 
-#include <algorithm>
-
 namespace llanalyzer {
     const std::string& DispatcherConfig::getName() const {
         return name;
@@ -28,43 +26,38 @@ namespace llanalyzer {
         return !(rhs == *this);
     }
 
-    const DispatcherConfig& Config::getDispatcherConfig(const std::string& name) const {
+    // ##############################
+    // ########### Config ###########
+    // ##############################
+    std::optional<std::reference_wrapper<DispatcherConfig>> Config::getDispatcherConfig(const std::string& name) {
         auto it = std::find_if(dispatchers.begin(), dispatchers.end(), [&](const DispatcherConfig& conf) {
             return conf.getName() == name;
         });
 
         if (it == dispatchers.end()) {
-            throw std::out_of_range("No dispatcher config found for " + name);
+            return {};
         } else {
-            return *it;
+            return {std::ref(*it)};
         }
-    }
-
-    bool Config::contains(const std::string& name) const {
-        auto it = std::find_if(dispatchers.begin(), dispatchers.end(), [&](const DispatcherConfig& conf) {
-            return conf.getName() == name;
-        });
-        return it != dispatchers.end();
     }
 
     const std::vector<DispatcherConfig>& Config::getDispatchers() const{
         return dispatchers;
     }
 
-    void Config::addDispatcherConfig(const std::string& name) {
-        dispatchers.emplace_back(name);
+    DispatcherConfig& Config::addDispatcherConfig(const std::string& name) {
+        return dispatchers.emplace_back(name);
     }
 
     void Config::addMapping(const std::string& name, identifier_t identifier, const std::string& analyzerName) {
-        auto it = std::find_if(dispatchers.begin(), dispatchers.end(), [&](const DispatcherConfig& conf) {
-            return conf.getName() == name;
-        });
-
         // Create dispatcher config if it does not exist yet
-        if (it == dispatchers.end()) {
-            addDispatcherConfig(name);
+        std::optional<std::reference_wrapper<DispatcherConfig>> dispatcherConfig = getDispatcherConfig(name);
+
+        if (!dispatcherConfig) {
+            addDispatcherConfig(name).addMapping(identifier, analyzerName);
         } else {
-            it->addMapping(identifier, analyzerName);
+            dispatcherConfig->get().addMapping(identifier, analyzerName);
         }
+
     }
 }

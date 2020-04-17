@@ -33,6 +33,9 @@
 #include "iosource/IOSource.h"
 #include "iosource/PktDumper.h"
 
+// LLPOC
+#include "llanalyzer/Timing.h"
+
 // These represent NetBIOS services on ephemeral ports.  They're numbered
 // so that we can use a single int to hold either an actual TCP/UDP server
 // port or one of these.
@@ -121,7 +124,7 @@ void NetSessions::Done()
 void NetSessions::NextPacket(double t, const Packet* pkt)
 	{
 	SegmentProfiler prof(segment_logger, "dispatching-packet");
-    DBG_LOG(DBG_LLPOC, "[LAYER 3] Next packet with ts=%f has layer 3 protocol %d", pkt->time, pkt->l3_proto);
+//    DBG_LOG(DBG_LLPOC, "[LAYER 3] Next packet with ts=%f has layer 3 protocol %d", pkt->time, pkt->l3_proto);
 
 	if ( raw_packet )
 		mgr.Enqueue(raw_packet, IntrusivePtr{AdoptRef{}, pkt->BuildPktHdrVal()});
@@ -214,9 +217,9 @@ static unsigned int gre_header_len(uint16_t flags)
 void NetSessions::DoNextPacket(double t, const Packet* pkt, const IP_Hdr* ip_hdr,
 			       const EncapsulationStack* encapsulation)
 	{
-    DBG_LOG(DBG_LLPOC, "[LAYER 4] Next packet with ts=%f contains protocol %d", pkt->time, (int) ip_hdr->NextProto());
+//    DBG_LOG(DBG_LLPOC, "[LAYER 4] Next packet with ts=%f contains protocol %d", pkt->time, (int) ip_hdr->NextProto());
 
-    uint32 caplen = pkt->cap_len - pkt->hdr_size;
+    uint32_t caplen = pkt->cap_len - pkt->hdr_size;
 	const struct ip* ip4 = ip_hdr->IP4_Hdr();
 
 	uint32_t len = ip_hdr->TotalLen();

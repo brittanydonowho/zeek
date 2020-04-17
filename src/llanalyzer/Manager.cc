@@ -7,11 +7,13 @@
 #include "ProtocolAnalyzerSet.h"
 
 #include "plugin/Manager.h"
+#include "Timing.h"
 
 using namespace llanalyzer;
 
 Manager::Manager()
-        : plugin::ComponentManager<llanalyzer::Tag, llanalyzer::Component>("LLAnalyzer", "Tag") {
+        : plugin::ComponentManager<llanalyzer::Tag, llanalyzer::Component>("LLAnalyzer", "Tag"),
+          analyzerSet(nullptr) {
 }
 
 Manager::~Manager() {
@@ -49,6 +51,9 @@ void Manager::DumpDebug() {
     for (auto& current : GetComponents()) {
         DBG_LOG(DBG_LLPOC, "    %s (%s)", current->Name().c_str(), IsEnabled(current->Tag()) ? "enabled" : "disabled");
     }
+
+    // Dump Analyzer Set
+    analyzerSet->DumpDebug();
 #endif
 }
 
@@ -169,5 +174,37 @@ Analyzer* Manager::InstantiateAnalyzer(const std::string& name) {
     return tag ? InstantiateAnalyzer(tag) : nullptr;
 }
 
-void Manager::processPacket(uint8_t *packetStartPointer) {
+void Manager::processPacket(Packet* packet) {
+#ifdef DEBUG
+    static size_t counter = 0;
+    DBG_LOG(DBG_LLPOC, "Analyzing packet %ld, ts=%.3f...", ++counter, packet->time);
+#endif
+
+    // Dispatch and analyze layers unitl getIdentifier returns -1 --> end of packet reached
+    identifier_t nextLayerID = packet->link_type;
+    do {
+        Analyzer* currentAnalyzer = analyzerSet->dispatch(nextLayerID);
+
+        // Analyzer not found
+        if (currentAnalyzer == nullptr) {
+            break;
+        }
+
+        // Get identifier of next layer protocol
+        nextLayerID = currentAnalyzer->getIdentifier(packet);
+
+        // Analyze this layer
+        currentAnalyzer->analyze(packet);
+    } while (nextLayerID != NO_NEXT_LAYER);
+
+    // Processing finished, reset analyzer set state for next packet
+    analyzerSet->reset();
+
+#ifdef DEBUG
+    if (nextLayerID == NO_NEXT_LAYER) {
+        DBG_LOG(DBG_LLPOC, "Done.");
+    } else {
+        DBG_LOG(DBG_LLPOC, "Done, last found layer identifier was %#x.", nextLayerID);
+    }
+#endif
 }

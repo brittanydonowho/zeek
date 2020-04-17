@@ -146,7 +146,7 @@ public:
 	 */
 	Analyzer* InstantiateAnalyzer(const std::string& name);
 
-	void processPacket(uint8_t* packetStartPointer);
+	void processPacket(Packet* packet);
 
 private:
     AnalyzerSet* analyzerSet;

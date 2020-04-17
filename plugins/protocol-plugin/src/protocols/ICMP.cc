@@ -14,4 +14,5 @@ uint32_t ICMP::getIdentifier(Packet* packet) {
 
 void ICMP::analyze(Packet* packet) {
     // Do nothing for now
+    DBG_LOG(DBG_LLPOC, "Found ICMP layer!");
 }

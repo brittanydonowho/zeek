@@ -14,6 +14,10 @@
 #include <pcap-int.h>
 #endif
 
+// FOR LLPOC: include llanalyzer manager to call packet loop
+#include "llanalyzer/Manager.h"
+#include "llanalyzer/Timing.h"
+
 using namespace iosource::pcap;
 
 PcapSource::~PcapSource()
@@ -210,7 +214,25 @@ bool PcapSource::ExtractNextPacket(Packet* pkt)
 		return false;
 		}
 
-	pkt->Init(props.link_type, &current_hdr.ts, current_hdr.caplen, current_hdr.len, data);
+	last_data = data;
+
+	// Original Zeek L2 extraction
+    pkt->Init(props.link_type, &current_hdr.ts, current_hdr.caplen, current_hdr.len, data);
+
+	// LLPOC L2 extraction
+//	pkt->InitLLPOC(props.link_type, &current_hdr.ts, current_hdr.caplen, current_hdr.len, data);
+//	llanalyzer_mgr->processPacket(pkt);
+
+	// FOR LLPOC: Create another packet, run it through the packet loop
+	Packet packet;
+	packet.InitLLPOC(props.link_type, &current_hdr.ts, current_hdr.caplen, current_hdr.len, data);
+	Timing::startTM("LLPOC");
+	llanalyzer_mgr->processPacket(&packet);
+	Timing::endTM("LLPOC");
+
+//    if (std::abs(pkt->time - 1578658720.674743000) < 1E4) {
+//        int x = 0;
+//    }
 
 	if ( current_hdr.len == 0 || current_hdr.caplen == 0 )
 		{

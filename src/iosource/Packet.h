@@ -109,6 +109,20 @@ public:
 		std::string tag = std::string(""));
 
 	/**
+	 * Same as above, but without calling ProcessLayer2.
+	 * @param link_type
+	 * @param ts
+	 * @param caplen
+	 * @param len
+	 * @param data
+	 * @param copy
+	 * @param tag
+	 */
+	void InitLLPOC(int link_type, pkt_timeval *ts, uint32_t caplen,
+			  uint32_t len, const u_char *data, int copy = false,
+			  std::string tag = std::string(""));
+
+	/**
 	 * Returns true if parsing the layer 2 fields failed, including when
 	 * no data was passed into the constructor in the first place.
 	 */
@@ -143,6 +157,11 @@ public:
 	 * Describes the packet, with standard signature.
 	 */
 	void Describe(ODesc* d) const;
+
+	/**
+	 * Wrapper to generate a packet-level weird.
+	 */
+	void Weird(const char* name);
 
 	/**
 	 * Maximal length of a layer 2 address.
@@ -217,9 +236,6 @@ public:
 private:
 	// Calculate layer 2 attributes.
 	void ProcessLayer2();
-
-	// Wrapper to generate a packet-level weird.
-	void Weird(const char* name);
 
 	// Renders an MAC address into its ASCII representation.
 	Val* FmtEUI48(const u_char *mac) const;

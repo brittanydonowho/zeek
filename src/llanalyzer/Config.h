@@ -4,6 +4,7 @@
 #include <map>
 #include <utility>
 #include <vector>
+#include <algorithm>
 
 #include "Defines.h"
 
@@ -29,10 +30,9 @@ private:
 
 class Config {
 public:
-    bool contains(const std::string& name) const;
     const std::vector<DispatcherConfig>& getDispatchers() const;
-    const DispatcherConfig& getDispatcherConfig(const std::string& name) const;
-    void addDispatcherConfig(const std::string& name);
+    std::optional<std::reference_wrapper<DispatcherConfig>> getDispatcherConfig(const std::string& name);
+    DispatcherConfig& addDispatcherConfig(const std::string& name);
     void addMapping(const std::string& name, identifier_t identifier, const std::string& analyzerName);
 
 private:

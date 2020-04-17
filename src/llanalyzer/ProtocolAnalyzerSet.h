@@ -4,6 +4,7 @@
 #include "AnalyzerSet.h"
 #include "dispatchers/Dispatcher.h"
 #include "dispatchers/VectorDispatcher.h"
+#include "dispatchers/UnorderedMapDispatcher.h"
 
 namespace llanalyzer {
 
@@ -12,17 +13,22 @@ public:
     explicit ProtocolAnalyzerSet(Config& configuration);
     ~ProtocolAnalyzerSet() override;
 
-    const Analyzer* dispatch(identifier_t identifier) const override;
+    Analyzer* dispatch(identifier_t identifier) override;
     void reset() override;
 
+protected:
+    void DumpDebug() const override;
+
 private:
+//    using dispatcher_impl = UnorderedMapDispatcher;
     using dispatcher_impl = VectorDispatcher;
 
     std::map<std::string, Analyzer*> analyzers;
     std::map<std::string, Dispatcher*> dispatchers;
-    const Dispatcher* head;
+    Dispatcher* head;
+    Dispatcher* currentState;
 
-    const Dispatcher* getDispatcher(Config& configuration, const std::string& dispatcherName);
+    Dispatcher* getDispatcher(Config& configuration, const std::string& dispatcherName);
 };
 
 }

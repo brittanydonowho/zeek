@@ -15,6 +15,7 @@ set(llanalyzer_SRCS
     Component.cc
     Tag.cc
     Config.cc
+    Timing.cc
     ${disp_SRCS}
 )
 

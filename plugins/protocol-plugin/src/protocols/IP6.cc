@@ -19,6 +19,8 @@ uint32_t IP6::getIdentifier(Packet* packet) {
         // Goto next extension header until either NoNxt (59) or a non-extension-header
         const struct ip6_ext* ext_header = nullptr;
         do {
+            DBG_LOG(DBG_LLPOC, "Found IPv6 extension header: %d", ip6_header->ip6_nxt);
+
             ext_header = reinterpret_cast<const struct ip6_ext*>(cur_pos);
 
             if (ext_header->ip6e_nxt == IPPROTO_NONE) {
@@ -47,6 +49,14 @@ void IP6::analyze(Packet* packet) {
 
     // "Analyzing" already done in getIdentifier(), aka skipping right to the following protocol
     packet->cur_pos = savedCurPos;
+
+#ifdef DEBUG
+    char src_ip[INET6_ADDRSTRLEN];
+    char dst_ip[INET6_ADDRSTRLEN];
+    inet_ntop(AF_INET6, &ip6_header->ip6_src, src_ip, INET6_ADDRSTRLEN);
+    inet_ntop(AF_INET6, &ip6_header->ip6_dst, dst_ip, INET6_ADDRSTRLEN);
+    DBG_LOG(DBG_LLPOC, "Found IPv6 layer: SRC_IP=%s, DST_IP=%s", src_ip, dst_ip);
+#endif
 
     ip6_header = nullptr;
     savedCurPos = nullptr;

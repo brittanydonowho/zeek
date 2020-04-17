@@ -6,7 +6,7 @@ VectorDispatcher::~VectorDispatcher() {
     _clear();
 };
 
-bool VectorDispatcher::Register(identifier_t identifier, const Analyzer* analyzer, const Dispatcher* dispatcher) {
+bool VectorDispatcher::Register(identifier_t identifier, Analyzer* analyzer, Dispatcher* dispatcher) {
     if (table.size() <= identifier) {
         table.resize(identifier + 1);
     }
@@ -64,6 +64,16 @@ void VectorDispatcher::_clear() {
         delete current;
     }
     table.clear();
+}
+
+void VectorDispatcher::DumpDebug() const {
+#ifdef DEBUG
+    for (size_t i = 0; i < table.size(); i++) {
+        if (table[i] != nullptr) {
+            DBG_LOG(DBG_LLPOC, "    %#8lx => %s, %p", i, table[i]->analyzer->GetAnalyzerName(), table[i]->dispatcher);
+        }
+    }
+#endif
 }
 
 }
